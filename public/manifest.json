@@ -1,0 +1,13 @@
+{
+  "name": "Bunn",
+  "short_name": "App",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon/brand.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

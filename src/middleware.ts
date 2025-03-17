@@ -49,16 +49,16 @@ export async function middleware(req: NextRequest) {
   // 处理根路由重定向
   if (pathname === '/') {
     // 从Cookie中获取会话信息
-    if (session) {
+    if (!session) {
       return NextResponse.redirect(new URL(`/${locale}/home`, req.url));
     }
 
-    // const redirectParam = req.nextUrl.searchParams.get('redirect');
-    // if (redirectParam) {
-    //   const redirectPath = redirectParam.startsWith('/') ? redirectParam : `/${redirectParam}`;
-    //   return NextResponse.redirect(new URL(`/${locale}${redirectPath}`, req.url));
-    // }
-    // return NextResponse.redirect(new URL(`/${locale}/memo-cards`, req.url));
+    const redirectParam = req.nextUrl.searchParams.get('redirect');
+    if (redirectParam) {
+      const redirectPath = redirectParam.startsWith('/') ? redirectParam : `/${redirectParam}`;
+      return NextResponse.redirect(new URL(`/${locale}${redirectPath}`, req.url));
+    }
+    return NextResponse.redirect(new URL(`/${locale}/memo-cards`, req.url));
   }
 
   console.log(session, 'session');

@@ -11,7 +11,7 @@ import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
 import { useState } from "react"
 import UserPanel from "@/components/user-panel"
-import { useAudioPermission } from "@/hooks/use-audio-permission"
+import { useAudioPermission } from "@/hooks/audio"
 
 export default function ClientLayout({
     children,
@@ -63,11 +63,11 @@ function UnloginHeader() {
     const t = useTranslations();
 
     return (
-        <nav className="flex fixed top-0 items-center justify-between w-full px-0 h-[86px] z-10">
+        <nav className="top-0 z-10 fixed flex justify-between items-center px-0 w-full h-[86px]">
             <div className="flex items-center gap-4 pl-4">
                 {/* <BrandIcon size="large" /> */}
             </div>
-            <div className="flex items-center gap-8 font-medium pr-14">
+            <div className="flex items-center gap-8 pr-14 font-medium">
                 <LanguageSelector />
                 <button
                     onClick={() => router.push('/guide')}
@@ -109,33 +109,33 @@ function LoginedHeader() {
   }
 
   return (
-    <header className="p-[12px] backdrop-blur-[3px] backdrop-saturate-[180%] justify-between items-center w-full fixed z-[200] top-0 flex">
+    <header className="top-0 z-[200] fixed flex justify-between items-center backdrop-blur-[3px] backdrop-saturate-[180%] p-[12px] w-full">
       <UserPanel />
       <nav className="w-[620px]">
-        <ul className="flex items-center justify-between">
+        <ul className="flex justify-between items-center">
           <li>
             <Link prefetch href={`/${locale}/memo-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/memo-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('memoCards')}</Link>
           </li>
           <li>
             <Link href={`/${locale}/word-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/word-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('wordCards')}</Link>
           </li>
-          <li className="sm:block hidden">
+          <li className="hidden sm:block">
             <Link prefetch href={`/${locale}/exam-preparation`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/exam-preparation` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('exam')}</Link>
           </li>
-          <li className="sm:block hidden">
+          <li className="hidden sm:block">
             <Link prefetch href={`/${locale}/daily-report`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname.startsWith(`/${locale}/daily-report`) ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('dailyReport')}</Link>
           </li>
         </ul>
       </nav>
-      <label className="hidden md:inline-block text-base relative w-[56px] h-[28px]">
+      <label className="hidden md:inline-block relative w-[56px] h-[28px] text-base">
         <input
           onChange={handleToggle}
           checked={theme === "light"}
           className="peer opacity-0 w-0 h-0"
           type="checkbox"
         />
-        <span className="transition duration-300 ease-in-out peer-checked:translate-x-5 peer-checked:shadow-full-moon left-2 top-1 rounded-full shadow-crescent absolute h-5 w-5 z-[1]"></span>
-        <span className="peer-checked:bg-blue absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-black transition duration-500 rounded-3xl"></span>
+        <span className="top-1 left-2 z-[1] absolute shadow-crescent peer-checked:shadow-full-moon rounded-full w-5 h-5 transition peer-checked:translate-x-5 duration-300 ease-in-out"></span>
+        <span className="top-0 right-0 bottom-0 left-0 absolute bg-black peer-checked:bg-blue rounded-3xl transition duration-500 cursor-pointer"></span>
       </label>
     </header>
   )

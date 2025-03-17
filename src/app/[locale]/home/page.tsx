@@ -41,8 +41,6 @@ export default function LandingPage() {
     const router = useRouter()
     const t = useTranslations();
     const locale = useLocale();
-    console.log(locale, 'locale');
-
     // 添加状态管理
     const [showDemo, setShowDemo] = React.useState<null | 'memo' | 'word' | 'exam' | 'daily'>(null)
     // 添加MemoCard状态

@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html>
       <head>
-        <link rel="manifest" href="/manifest.json" />
+        {/* <link rel="manifest" href="/manifest.json" /> */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}>
         {/* <SpeedInsights /> */}

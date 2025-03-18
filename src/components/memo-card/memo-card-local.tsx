@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { speakText } from "@/utils";
-// import { Dictation } from "@/components/dictation";
+import { Dictation } from "@/components/dictation";
 // import { ILoaclCard, deleteCard } from "@/store/local-cards-slice";
 import { useRefState, useTripleRightClick } from "@/hooks";
 import { Card } from "@/components/ui/card";
@@ -14,6 +14,7 @@ import { cardIdAtom, ILoaclCard, localCardListAtom } from "@/lib/atom";
 import { useSetAtom } from "jotai";
 import { memoCard } from "@/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
+import { useAIStream } from "@/hooks/use-ai-stream";
 
 export default function MemoCardLocal(props: ILoaclCard) {
     const { original_text, context_url } = props;
@@ -30,6 +31,8 @@ export default function MemoCardLocal(props: ILoaclCard) {
     const prevTranslationTextRef = React.useRef<string>("");
     const kanaTextRef = React.useRef<HTMLDivElement>(null);
     const prevKanaTextRef = React.useRef<string>("");
+    let translateDoneRef = React.useRef(false)
+    let kanaDoneRef = React.useRef(false);
 
     const [cardInfoRef, setCardInfo] = useRefState<InferSelectModel<typeof memoCard> | null>(null);
 
@@ -52,6 +55,22 @@ export default function MemoCardLocal(props: ILoaclCard) {
         }
     }, [setCardId]);
 
+    useAIStream(
+        original_text ? `${original_text}，给出这句话的中文翻译，注意一定要中文。` : '',
+        {
+            onChunk: handleTranslationUpdate,
+            onFinish: handleTranslationDone,
+        }
+    );
+
+    useAIStream(
+        original_text ? `${original_text}，给出这句话的平假名读音，注意只需要平假名读音和对应位置的标点符号。` : '',
+        {
+            onChunk: handleKanaUpdate,
+            onFinish: handleKanaDone,
+        }
+    );
+
     async function handleAllDone() {
         if (translationTextRef.current?.textContent && kanaTextRef.current?.textContent) {
             const record = await insertMemoCard(original_text, translationTextRef.current.textContent, kanaTextRef.current.textContent, context_url);
@@ -63,6 +82,32 @@ export default function MemoCardLocal(props: ILoaclCard) {
 
     function handleBlurChange(type: string) {
         setIsFocused(type === "blur" ? false : true);
+    }
+
+    function handleTranslationUpdate(res: string) {
+        if (translationTextRef.current && translationTextRef.current?.textContent !== null) {
+            translationTextRef.current.textContent += res;
+        }
+    }
+
+    function handleTranslationDone() {
+        translateDoneRef.current = true;
+        if (translateDoneRef.current && kanaDoneRef.current) {
+            handleAllDone();
+        }
+    }
+
+    function handleKanaUpdate(res: string) {
+        if (kanaTextRef.current && kanaTextRef.current?.textContent !== null) {
+            kanaTextRef.current.textContent += res;
+        }
+    }
+
+    function handleKanaDone() {
+        kanaDoneRef.current = true;
+        if (translateDoneRef.current && kanaDoneRef.current) {
+            handleAllDone();
+        }
     }
 
     function handlePlayBtn() {
@@ -268,7 +313,7 @@ export default function MemoCardLocal(props: ILoaclCard) {
                 </div>
             </div>
             <div className="relative flex flex-col mt-2">
-                {/* {
+                {
                     cardInfoRef.current?.id ? (
                         <Dictation
                             originalText={original_text}
@@ -276,7 +321,7 @@ export default function MemoCardLocal(props: ILoaclCard) {
                             onBlurChange={handleBlurChange}
                         />
                     ) : null
-                } */}
+                }
             </div>
         </Card>
     );

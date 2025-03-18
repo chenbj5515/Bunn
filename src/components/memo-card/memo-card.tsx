@@ -2,7 +2,7 @@
 import React from "react";
 // import { setCardId } from "@/store/card-id-slice";
 import { getTimeAgo, speakText } from "@/utils";
-// import { Dictation } from "@/components/dictation";
+import { Dictation } from "@/components/dictation";
 import { useTripleRightClick } from "@/hooks";
 import { Card } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
@@ -261,15 +261,15 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
                 </div>
             </div>
             <div className="relative flex flex-col mt-2">
-                {/* {
-                    original_text ? (
+                {
+                    originalText ? (
                         <Dictation
-                            originalText={original_text}
+                            originalText={originalText}
                             cardID={id}
                             onBlurChange={handleBlurChange}
                         />
                     ) : null
-                } */}
+                }
             </div>
         </Card>
     );

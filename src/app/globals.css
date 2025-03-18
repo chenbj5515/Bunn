@@ -13,10 +13,6 @@ main,
   background: rgb(33 33 33);
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
 @font-face {
   font-family: NewYork;
   src: url("../../public/assets/fonts/newyork.otf");
@@ -93,6 +89,9 @@ main,
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
 
   body {
     @apply bg-background text-foreground;

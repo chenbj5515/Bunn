@@ -8,13 +8,17 @@ import { TWordCard } from "../page";
 import Loading from "@/components/ui/loading";
 import { updateForgetCount } from "@/components/word-card/server-functions";
 import { actionTypeEnum, relatedTypeEnum } from "@/db/schema";
+import { WordCardsGuide } from "./word-cards-guide";
 // import { insertActionLogs } from "@/components/exam/server-actions/insert-action-logs";
 import type { InferSelectModel } from "drizzle-orm";
 import type { memoCard } from "@/db/schema";
+import { WordCardAdder } from "@/components/word-adder";
 
 interface IProps {
     newCardsPromise: Promise<TWordCard[]>;
     reviewCardsPromise: Promise<TWordCard[]>;
+    memoCardCount: number;
+    firstMemoCard?: InferSelectModel<typeof memoCard> | null;
 }
 
 function calculateElementsPerRow(parentWidth: number, childWidth = 280, minGap = 20) {
@@ -43,7 +47,7 @@ function splitIntoRows<T>(wordList: T[], n: number) {
 }
 
 export function WordCards(props: IProps) {
-    const { newCardsPromise, reviewCardsPromise } = props;
+    const { newCardsPromise, reviewCardsPromise, memoCardCount, firstMemoCard } = props;
     const router = useRouter();
 
     const newCards = use(newCardsPromise);
@@ -60,6 +64,35 @@ export function WordCards(props: IProps) {
     const gapWidthRef = React.useRef(20);   // 最小间距
     const ref = React.useRef<HTMLDivElement>(null);
 
+    const updateLayout = React.useCallback(() => {
+        console.log(ref.current, "updateLayout======")
+        if (ref.current) {
+            const containerWidth = ref.current.clientWidth;
+            const cardWidth = cardWidthRef.current;
+            const minGap = gapWidthRef.current;
+            const elementNumPerRow = calculateElementsPerRow(containerWidth, cardWidth, minGap);
+
+            setRows(prev => {
+                const curRows = prev.flat().length ? prev.flat() : wordCards;
+                const next = splitIntoRows<TWordCard>(curRows, elementNumPerRow);
+                return next;
+            });
+        }
+    }, [wordCards.length]);
+
+    React.useEffect(() => {
+        const observer = new ResizeObserver(updateLayout);
+        
+        // 初始化时执行一次布局计算
+        updateLayout();
+        
+        observer.observe(document.documentElement);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [updateLayout]);
+
     React.useEffect(() => {
         document.addEventListener("mouseup", (event) => {
             const target = event.target;
@@ -73,30 +106,6 @@ export function WordCards(props: IProps) {
             }
         });
     }, []);
-
-    React.useEffect(() => {
-        const observer = new ResizeObserver(() => {
-            if (ref.current) {
-                const containerWidth = ref.current.clientWidth;
-                const cardWidth = cardWidthRef.current;
-                const minGap = gapWidthRef.current;
-
-                // 计算每行最多能放几个卡片
-                const elementNumPerRow = calculateElementsPerRow(containerWidth, cardWidth, minGap);
-
-                setRows(prev => {
-                    const curRows = prev.flat().length ? prev.flat() : wordCards;
-                    const next = splitIntoRows<TWordCard>(curRows, elementNumPerRow);
-                    return next;
-                });
-            }
-        });
-        observer.observe(document.documentElement);
-
-        return () => {
-            observer.disconnect();
-        };
-    }, [wordCards.length]);
 
     // 计算每行卡片之间的实际间距
     const calculateGap = (containerWidth: number, cardsInRow: number, cardWidth: number) => {
@@ -144,7 +153,16 @@ export function WordCards(props: IProps) {
                 </div>
             ) : null}
             <div ref={ref} className="w-full">
-                {
+                {rows.length === 0 ? (
+                    <>
+                        <WordCardsGuide
+                            memoCardCount={memoCardCount}
+                            firstMemoCard={firstMemoCard}
+                        />
+                        <WordCardAdder />
+                    </>
+
+                ) : (
                     rows.map((row, rowIdx) => {
                         // 获取容器宽度
                         const containerWidth = ref.current?.clientWidth || 0;
@@ -191,7 +209,7 @@ export function WordCards(props: IProps) {
                             </div>
                         );
                     })
-                }
+                )}
             </div>
         </Suspense>
     )

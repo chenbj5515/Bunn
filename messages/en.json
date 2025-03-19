@@ -364,7 +364,13 @@
     "whereToGetSentence": "Where can I get Japanese sentences?"
   },
   "wordCards": {
-    "demoMeaning": "distort, misinterpret"
+    "demoMeaning": "distort, misinterpret",
+    "noWordCards": "No Word Cards Yet",
+    "importSampleFirst": "Let's start by importing some sample sentences",
+    "importSampleData": "Import Sample Data",
+    "clickHere": "Click Here",
+    "selectWordGuide": "Select Words to Learn",
+    "selectWordGuideDesc": "Click on any word or phrase in the sentence to add it to your word cards"
   },
   "exam": {
     "title": "Exam",

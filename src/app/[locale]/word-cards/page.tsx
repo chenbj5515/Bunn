@@ -20,6 +20,19 @@ export default async function WordCardsApp() {
         return new Error("Unauthorized")
     }
 
+    // 获取 memo card 表的数据量
+    const memoCardCount = await db.select({ count: sql<number>`cast(count(*) as integer)` })
+        .from(memoCard)
+        .then(result => result[0].count);
+
+    // 如果有数据，获取第一条记录
+    const firstMemoCard = memoCardCount > 0 
+        ? await db.select()
+            .from(memoCard)
+            .limit(1)
+            .then(results => results[0])
+        : null;
+
     const newCardsCount = await db.select({ count: sql<number>`count(*)` })
         .from(wordCard)
         .where(and(
@@ -64,6 +77,8 @@ export default async function WordCardsApp() {
             <WordCards
                 newCardsPromise={newCardsPromise}
                 reviewCardsPromise={reviewCardsPromise}
+                memoCardCount={memoCardCount}
+                firstMemoCard={firstMemoCard}
             />
         </div>
     );

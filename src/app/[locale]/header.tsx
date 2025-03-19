@@ -20,7 +20,6 @@ export default function ClientLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const router = useRouter();
     const pathname = usePathname();
     const setLocalCardList = useSetAtom(localCardListAtom);
     // const dispatch = useDispatch();
@@ -47,7 +46,7 @@ export default function ClientLayout({
                         : <LoginedHeader />
             }
             <div style={{
-                paddingTop: noNav ? 0 : "86px",
+                paddingTop: noNav ? 0 : "64px",
                 paddingBottom: unloginHeader ? "100px" : 0
             }}>
                 {children}
@@ -110,7 +109,7 @@ function LoginedHeader() {
   }
 
   return (
-    <header className="top-0 z-[200] fixed flex justify-between items-center backdrop-blur-[3px] backdrop-saturate-[180%] p-[12px] w-full">
+    <header className="top-0 z-[200] fixed flex justify-between items-center backdrop-blur-[3px] backdrop-saturate-[180%] p-[12px] w-full h-[64px]">
       <UserPanel />
       <nav className="w-[620px]">
         <ul className="flex justify-between items-center">

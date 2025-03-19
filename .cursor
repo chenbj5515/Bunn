@@ -1,0 +1,12 @@
+{
+  "api_paths": {
+    "ai": "src/app/api/openai/completion",
+    "stream_ai": "src/app/api/openai/stream",
+    "vision_ai": "src/app/api/openai/extract-subtitles"
+  },
+  "search_paths": {
+    "components": "src/components",
+    "lib": "src/lib",
+    "api": "src/app/api"
+  }
+} 

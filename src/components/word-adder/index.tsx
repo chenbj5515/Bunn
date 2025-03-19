@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useAtomValue } from "jotai";
 import { cardIdAtom } from "@/lib/atom";
+import { usePathname, useRouter } from "next/navigation";
 
 type StateType = {
     state: 'initial' | 'selected' | 'edited' | 'added' | 'closed';
@@ -67,17 +68,17 @@ async function getCompletion(prompt: string) {
         },
         body: JSON.stringify({ prompt }),
     });
-    
+
     if (!response.ok) {
         throw new Error('API request failed');
     }
-    
+
     const data = await response.json();
     return data.data;
 }
 
 async function correctSelectedText(selected: string, originalText: string): Promise<string> {
-    const response = await getCompletion(`请判断「${selected}」在「${originalText}」这个句子中是否是一个完整的单词或短语。如果是，直接返回这个单词或短语；如果不是，请返回包含这个选中内容的最小完整单词或短语。注意：只返回修正后的单词或短语，不要返回任何解释。`);
+    const response = await getCompletion(`请判断「${selected}」在「${originalText}」这个句子中是否是一个完整的单词或短语。如果是，直接返回这个单词或短语；如果不是，请返回包含这个选中内容的最小完整单词或短语。注意：1. 只返回修正后的单词或短语，不要返回任何解释。2. 如果选中内容是一个完整的单词或者短语加上了多余的部分，那么要把多余的部分去掉只保留完整的单词和短语。`);
     return response.trim();
 }
 
@@ -100,6 +101,9 @@ export function WordCardAdder() {
 
     const stateRef = React.useRef<typeof state | null>(null);
 
+    const pathname = usePathname();
+    const router = useRouter();
+
     function effectCleanMeaningTextContent() {
         if (meaningTextRef.current) {
             meaningTextRef.current.textContent = "";
@@ -121,7 +125,11 @@ export function WordCardAdder() {
 
     async function effectInsertWordCard() {
         if (meaningTextRef.current?.textContent) {
-            insertWordCard(selectedText, meaningTextRef.current.textContent, cardId);
+            await insertWordCard(selectedText, meaningTextRef.current.textContent, cardId);
+        }
+        if (pathname.includes("/word-cards")) {
+            // window.location.reload();
+            router.refresh();
         }
     }
 
@@ -159,7 +167,7 @@ export function WordCardAdder() {
             if (selected.length && originalTextElement) {
                 const originalText = originalTextElement.textContent || '';
                 const correctedText = await correctSelectedText(selected, originalText);
-                
+
                 if (correctedText) {
                     dispatch({
                         type: "select",

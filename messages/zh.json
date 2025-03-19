@@ -364,7 +364,13 @@
         "whereToGetSentence": "哪里可以获取日语句子？"
     },
     "wordCards": {
-        "demoMeaning": "扭曲，曲解"
+        "demoMeaning": "扭曲，曲解",
+        "noWordCards": "还没有单词卡",
+        "importSampleFirst": "Bunn以句子为核心，单词需要从句子中划取，让我们先导入一些示例句子。",
+        "importSampleData": "导入示例数据",
+        "clickHere": "点击这里",
+        "selectWordGuide": "选择要学习的单词",
+        "selectWordGuideDesc": "选取记忆卡片原文中的任何单词或短语将其添加到你的单词卡中"
     },
     "exam": {
         "title": "考试",

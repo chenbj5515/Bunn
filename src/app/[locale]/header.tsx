@@ -12,6 +12,8 @@ import Link from "next/link"
 import { useState } from "react"
 import UserPanel from "@/components/user-panel"
 import { useAudioPermission } from "@/hooks/audio"
+import { localCardListAtom } from '@/lib/atom';
+import { useSetAtom } from 'jotai';
 
 export default function ClientLayout({
     children,
@@ -20,6 +22,7 @@ export default function ClientLayout({
 }>) {
     const router = useRouter();
     const pathname = usePathname();
+    const setLocalCardList = useSetAtom(localCardListAtom);
     // const dispatch = useDispatch();
 
     const currentRoute = pathname.split('/').pop() || '';
@@ -30,11 +33,9 @@ export default function ClientLayout({
     const unloginHeaderPaths = ["home", "guide", "pricing", "privacy-policy", "terms-of-service", "business-disclosure"];
     const unloginHeader = unloginHeaderPaths.includes(currentRoute);
 
-    // useEffect(() => {
-    //     dispatch(
-    //         clearLocalCards()
-    //     );
-    // }, [pathname]);
+    useEffect(() => {
+      setLocalCardList([]);
+    }, [pathname]);
 
     return (
         <>
@@ -119,9 +120,9 @@ function LoginedHeader() {
           <li>
             <Link href={`/${locale}/word-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/word-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('wordCards')}</Link>
           </li>
-          <li className="hidden sm:block">
+          {/* <li className="hidden sm:block">
             <Link prefetch href={`/${locale}/exam-preparation`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/exam-preparation` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('exam')}</Link>
-          </li>
+          </li> */}
           <li className="hidden sm:block">
             <Link prefetch href={`/${locale}/daily-report`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname.startsWith(`/${locale}/daily-report`) ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('dailyReport')}</Link>
           </li>

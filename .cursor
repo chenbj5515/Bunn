@@ -8,5 +8,15 @@
     "components": "src/components",
     "lib": "src/lib",
     "api": "src/app/api"
+  },
+  "i18n_paths": {
+    "messages": "messages",
+    "config": "src/i18n",
+    "middleware": "src/middleware.ts"
+  },
+  "i18n_schema": {
+    "type": "next-intl",
+    "mode": "with-i18n-routing",
+    "docs": "https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing"
   }
 } 

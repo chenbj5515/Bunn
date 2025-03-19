@@ -62,7 +62,7 @@ export async function getSession() {
     })
 }
 
-export async function signIn(provider: string, options?: any) {
+export async function signIn(provider: string) {
     return { url: `/api/auth/better-auth/signin/${provider}` };
 }
 

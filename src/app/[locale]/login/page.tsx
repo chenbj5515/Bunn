@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useTranslations } from 'next-intl'
 import { useSearchParams, useRouter } from 'next/navigation'
+import Image from 'next/image'
 // import LoadingButton from "@/components/ui/loading-button"
 import { signIn } from "@/lib/auth-client"
 
@@ -44,7 +45,7 @@ export default function LoginPage() {
                         <div className="flex justify-center">
                             <a href="#" className="flex items-center gap-2 font-medium">
                                 <div className="flex justify-center items-center bg-primary rounded-md w-6 h-6 text-primary-foreground">
-                                    <img src="/icon/brand.png" alt="Brand logo" className="size-4" />
+                                    <Image src="/icon/brand.png" alt="Brand logo" width={16} height={16} className="size-4" />
                                 </div>
                                 Bunn
                             </a>

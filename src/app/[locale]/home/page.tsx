@@ -48,7 +48,7 @@ export default function LandingPage() {
     // 引用容器元素
     const containerRef = React.useRef<HTMLDivElement>(null)
 
-    const defaultWordCardInfo = createDefaultWordCardInfo(t);
+    // const defaultWordCardInfo = createDefaultWordCardInfo(t);
 
     // 添加点击外部关闭弹窗的效果
     React.useEffect(() => {
@@ -93,14 +93,14 @@ export default function LandingPage() {
     };
 
     // 处理WordCard的"不认识"按钮点击事件
-    const handleUnRecognize = () => {
-        setShowMemoCard(true);
-    };
+    // const handleUnRecognize = () => {
+    //     setShowMemoCard(true);
+    // };
 
     // 处理WordCard的"认识"按钮点击事件
-    const handleRecognize = () => {
-        setShowDemo(null);
-    };
+    // const handleRecognize = () => {
+    //     setShowDemo(null);
+    // };
 
     return (
         <div className="bg-white min-h-screen">

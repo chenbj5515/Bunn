@@ -82,7 +82,7 @@ export function useAIStream(
     setText('');
     setIsFinished(false);
 
-    let abortController = new AbortController();
+    const abortController = new AbortController();
 
     async function fetchStream() {
       try {

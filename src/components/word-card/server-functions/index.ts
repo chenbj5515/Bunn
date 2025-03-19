@@ -30,7 +30,7 @@ export async function updateForgetCount(wordCardInfo: TWordCard) {
                 .set({
                     forgetCount: sql`${memoCard.forgetCount} + 1`
                 })
-                .where(eq(memoCard.id, wordCardInfo.memo_card_id))
+                .where(eq(memoCard.id, wordCardInfo.memoCardId))
         ]);
 
         return { success: true }

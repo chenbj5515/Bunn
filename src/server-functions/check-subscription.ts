@@ -30,10 +30,11 @@ export async function checkSubscription(): Promise<SubscriptionStatus> {
     }
 
     const currentTime = new Date();
-    const isSubscribed = subscription.endTime > currentTime;
+    const endTime = new Date(subscription.endTime);
+    const isSubscribed = endTime > currentTime;
 
     return {
         isSubscribed,
-        expiryTime: subscription.endTime
+        expiryTime: endTime
     };
 }

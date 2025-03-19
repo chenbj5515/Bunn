@@ -41,10 +41,10 @@ export async function GET(req: NextRequest) {
         'Connection': 'keep-alive',
       },
     });
-  } catch (err: any) {
-    console.error('流式响应错误:', err);
+  } catch (err: unknown) {
+    console.error('流式响应错误:', err instanceof Error ? err.message : '未知错误');
     return NextResponse.json(
-      { success: false, error: err?.message || '处理请求时发生错误' },
+      { success: false, error: err instanceof Error ? err.message : '处理请求时发生错误' },
       { status: 500 }
     );
   }

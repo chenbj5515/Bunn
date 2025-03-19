@@ -97,10 +97,10 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true, subtitles });
-  } catch (err: any) {
-    console.error('OCR处理错误:', err);
+  } catch (err: unknown) {
+    console.error('OCR处理错误:', err instanceof Error ? err.message : '未知错误');
     return NextResponse.json(
-      { success: false, error: err?.message || '处理请求时发生错误' },
+      { success: false, error: err instanceof Error ? err.message : '处理请求时发生错误' },
       { status: 500 }
     );
   }

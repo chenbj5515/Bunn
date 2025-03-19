@@ -398,6 +398,7 @@
         "history": {
             "title": "學習報告歷史"
         },
+        "completedLearning": "今日完成",
         "sentences": "句子",
         "words": "單字",
         "test": "測試",
@@ -413,23 +414,18 @@
         },
         "studyItems": {
             "item0": {
-                "question": "你忘記了「ハーレム」的意思，現在記得嗎？",
-                "translation": "我要打造一個全是我喜歡的專屬女僕的後宮……"
-            },
-            "item1": {
                 "question": "你忘記了「しらばっくれる」的意思，現在記得嗎？",
+                "answer": "裝傻",
                 "translation": "你還在裝傻嗎！"
             },
-            "item2": {
+            "item1": {
                 "question": "你忘記了「しかねます」的意思，現在記得嗎？",
+                "answer": "做不到",
                 "translation": "關於先前您提出的請求，我們無法承接。"
             },
-            "item3": {
-                "question": "你忘記了「挙げ句の果てに」的意思，現在記得嗎？",
-                "translation": "到頭來連自己的罪行也不承認。"
-            },
-            "item4": {
+            "item2": {
                 "question": "你忘記了「引き下がれない」的意思，現在記得嗎？",
+                "answer": "無法退讓",
                 "translation": "既然來到這一步，我也無法退縮了。"
             }
         }

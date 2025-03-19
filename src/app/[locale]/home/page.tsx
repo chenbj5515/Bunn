@@ -4,9 +4,10 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import React from "react"
-// import { DemoCard } from "@/components/card/demo-card"
-// import { DemoWordCard } from "@/components/word-card/demo-word-card"
-// import { MemoCard } from "@/components/card/memo-card"
+import { DemoCard } from "@/components/memo-card/demo-card"
+import { DemoWordCard } from "@/components/word-card/demo-word-card"
+import { MemoCard } from "@/components/memo-card/memo-card"
+import DemoDailyReport from "@/components/daily-report/demo-daily-report";
 // import DemoExam from "@/components/exam/demo-exam"
 // import DemoDailyReport from "@/components/daily-report/demo-daily-report"
 
@@ -16,23 +17,23 @@ function createDefaultWordCardInfo(t: (key: string) => string) {
         "id": "",
         "word": "捻じ曲げろ",
         "meaning": t('wordCards.demoMeaning'),
-        "create_time": new Date("2025-02-08T14:03:03.631Z"),
-        "user_id": "",
-        "review_times": 1,
-        "memo_card_id": "",
-        "forget_count": 0,
+        "createTime": new Date("2025-02-08T14:03:03.631Z").toISOString(),
+        "userId": "",
+        "reviewTimes": 1,
+        "memoCardId": "",
+        "forgetCount": 0,
         "memo_card": {
             "id": "",
             "translation": t('memoCards.demoTranslation2'),
-            "create_time": new Date("2025-02-08T14:02:46.828Z"),
-            "update_time": new Date("2025-02-12T08:57:52.715Z"),
-            "record_file_path": "",
-            "original_text": "え、私情で真相捻じ曲げろって事ですか？",
-            "review_times": 0,
-            "user_id": "",
-            "kana_pronunciation": "え、わたしじょうでしんそうねじまげろってことですか？",
-            "context_url": "https://www.youtube.com/watch?v=QrwxVi9hWJg&t=374",
-            "forget_count": 0
+            "createTime": new Date("2025-02-08T14:02:46.828Z").toISOString(),
+            "updateTime": new Date("2025-02-12T08:57:52.715Z").toISOString(),
+            "recordFilePath": "",
+            "originalText": "え、私情で真相捻じ曲げろって事ですか？",
+            "reviewTimes": 0,
+            "userId": "",
+            "kanaPronunciation": "え、わたしじょうでしんそうねじまげろってことですか？",
+            "contextUrl": "https://www.youtube.com/watch?v=QrwxVi9hWJg&t=374",
+            "forgetCount": 0
         }
     };
 }
@@ -48,7 +49,7 @@ export default function LandingPage() {
     // 引用容器元素
     const containerRef = React.useRef<HTMLDivElement>(null)
 
-    // const defaultWordCardInfo = createDefaultWordCardInfo(t);
+    const defaultWordCardInfo = createDefaultWordCardInfo(t);
 
     // 添加点击外部关闭弹窗的效果
     React.useEffect(() => {
@@ -93,14 +94,14 @@ export default function LandingPage() {
     };
 
     // 处理WordCard的"不认识"按钮点击事件
-    // const handleUnRecognize = () => {
-    //     setShowMemoCard(true);
-    // };
+    const handleUnRecognize = () => {
+        setShowMemoCard(true);
+    };
 
     // 处理WordCard的"认识"按钮点击事件
-    // const handleRecognize = () => {
-    //     setShowDemo(null);
-    // };
+    const handleRecognize = () => {
+        setShowDemo(null);
+    };
 
     return (
         <div className="bg-white min-h-screen">
@@ -115,11 +116,11 @@ export default function LandingPage() {
                             msOverflowStyle: 'none', /* IE and Edge */
                         }}
                     >
-                        {/* {
+                        {
                             showDemo === 'memo'
                                 ? <DemoCard />
                                 : showDemo === 'exam'
-                                    ? <DemoExam />
+                                    ? null //<DemoExam />
                                     : showDemo === 'daily'
                                         ? <DemoDailyReport />
                                         : showDemo === "word"
@@ -130,7 +131,7 @@ export default function LandingPage() {
                             showMemoCard
                                 ? <MemoCard {...defaultWordCardInfo.memo_card} onDelete={() => { }} />
                                 : null
-                        } */}
+                        }
                     </div>
                 </div>
             ) : null}

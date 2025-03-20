@@ -59,6 +59,7 @@ export default function LoginPage() {
                         <div className="gap-6 grid mt-[26px]">
                             <div className="flex flex-col gap-4">
                                 <Button
+                                    variant="outline"
                                     className="w-full"
                                     onClick={onGitHubSignIn}
                                     // isLoading={isGithubLoading}
@@ -73,6 +74,7 @@ export default function LoginPage() {
                                     {t('loginWithGithub')}
                                 </Button>
                                 <Button
+                                    variant="outline"
                                     className="w-full"
                                     onClick={onGoogleSignIn}
                                     // isLoading={isGoogleLoading}

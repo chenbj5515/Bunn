@@ -9,7 +9,6 @@ import { DemoWordCard } from "@/components/word-card/demo-word-card"
 import { MemoCard } from "@/components/memo-card/memo-card"
 import DemoDailyReport from "@/components/daily-report/demo-daily-report";
 // import DemoExam from "@/components/exam/demo-exam"
-// import DemoDailyReport from "@/components/daily-report/demo-daily-report"
 
 
 function createDefaultWordCardInfo(t: (key: string) => string) {
@@ -157,7 +156,7 @@ export default function LandingPage() {
                 </p>
                 <Button
                     className="bg-[#18181B] hover:bg-[#27272A] px-8 py-6 text-white text-lg"
-                    onClick={() => router.push('/login')}
+                    onClick={() => router.push(`/${locale}/login`)}
                 >
                     {t('home.getStartedFree')}
                 </Button>

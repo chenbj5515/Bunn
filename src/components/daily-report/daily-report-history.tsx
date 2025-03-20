@@ -6,9 +6,8 @@ import { actionTypeEnum, relatedTypeEnum, userActionLogs } from '@/db/schema';
 import { use } from 'react';
 import Loading from '@/components/ui/loading';
 import { ReportItem } from './report-item';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { getMonthKey } from '@/utils/time';
-import { getLocaleClient } from '@/i18n/get-locale-client';
 
 interface MonthData {
     month: string;
@@ -19,9 +18,8 @@ interface IProps {
     logsPromise: Promise<typeof userActionLogs.$inferSelect[]>
 }
 
-function processLogsData(logs: Awaited<IProps['logsPromise']>): MonthData[] {
+function processLogsData(logs: Awaited<IProps['logsPromise']>, locale: string): MonthData[] {
     const dateMap = new Map<string, Set<string>>();
-    const locale = getLocaleClient();
 
     // 按月份收集日期
     logs.forEach(log => {
@@ -47,7 +45,8 @@ function processLogsData(logs: Awaited<IProps['logsPromise']>): MonthData[] {
 
 function DailyReportContent({ logsPromise }: IProps) {
     const logs = use(logsPromise);
-    const monthlyData = processLogsData(logs);
+    const locale = useLocale();
+    const monthlyData = processLogsData(logs, locale);
     const t = useTranslations('dailyReport');
 
     return (

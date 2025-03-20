@@ -25,6 +25,8 @@
     "learnSentences": "Everyone says, don't learn words, learn sentences.",
     "shadowReading": "Everyone says, shadow reading is essential.",
     "bunnHelps": "Bunn's memory cards can help you achieve all of this.",
+    "contextTitle": "Not just sentences, Bunn supports full context.",
+    "pluginHelp": "Bunn plugin helps you copy with context.",
     "cards": {
       "memoCard": {
         "title": "Memory Cards",
@@ -438,5 +440,13 @@
         "translation": "Having come this far, I can't back down now."
       }
     }
+  },
+  "memoCard": {
+    "originalText": "Original Text",
+    "translation": "Translation",
+    "pronunciation": "Pronunciation"
+  },
+  "dictation": {
+    "writeOriginalText": "Please dictate the original text"
   }
 }

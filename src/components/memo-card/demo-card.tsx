@@ -7,9 +7,11 @@ import { useAudioPermission } from "@/hooks/audio";
 type DemoCardProps = {
     type?: 'youtubeSubtitle' | 'netflixSubtitle' | 'contextText';
     hideCreateTime?: boolean;
+    width?: string | number;
+    height?: string | number;
 }
 
-export function DemoCard({ type = 'youtubeSubtitle', hideCreateTime = false }: DemoCardProps) {
+export function DemoCard({ type = 'youtubeSubtitle', hideCreateTime = false, width, height }: DemoCardProps) {
     const t = useTranslations('memoCards')
     useAudioPermission();
 
@@ -61,6 +63,8 @@ export function DemoCard({ type = 'youtubeSubtitle', hideCreateTime = false }: D
             onDelete={() => { }}
             weakBorder
             hideCreateTime={hideCreateTime}
+            width={width}
+            height={height}
         />
     );
 }

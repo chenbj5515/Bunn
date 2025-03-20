@@ -10,6 +10,7 @@ import { useAtomValue } from "jotai";
 import { localCardListAtom } from "@/lib/atom";
 import { memoCard } from "@/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
+import useRemoveHtmlBg from "@/hooks/use-remove-html-bg";
 
 interface IProps {
     newCardsPromise: Promise<InferSelectModel<typeof memoCard>[]>
@@ -21,6 +22,7 @@ export function MemoCardList(props: IProps) {
     const [isLoading, setIsLoading] = React.useState(false);
     const localCards = useAtomValue(localCardListAtom)
     const t = useTranslations('memoCards');
+    useRemoveHtmlBg();
 
     const newCards = use(newCardsPromise) || [];
     const forgottenCards = use(forgottenCardsPromise) || [];

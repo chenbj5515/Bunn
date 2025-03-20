@@ -2,7 +2,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Pacifico } from 'next/font/google';
 import { Metadata } from 'next';
-import BackgroundWrapper from "./background-wrapper";
 
 export const metadata: Metadata = {
   title: 'Bunn',
@@ -43,11 +42,9 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}>
         {/* <SpeedInsights /> */}
-        <BackgroundWrapper>
-          <main className="relative flex flex-col">
-            {children}
-          </main>
-        </BackgroundWrapper>
+        <main className="relative flex flex-col bg-[#f5f5f5]">
+          {children}
+        </main>
       </body>
     </html>
   );

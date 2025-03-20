@@ -149,7 +149,7 @@ export default function LandingPage() {
                         t('home.personalJourney')
                     )}
                 </h1>
-                <p className="mx-auto mb-8 max-w-2xl text-[#49494b] text-xl">
+                <p className="mx-auto mb-[58px] max-w-2xl text-[#49494b] text-xl">
                     {locale === 'en' ? (
                         <>
                             Language learning requires consistent dedication
@@ -172,7 +172,7 @@ export default function LandingPage() {
                     <div className="mb-8 text-center">
                         <h3 className="mb-2 font-bold text-[#3e3f3d] text-2xl">{t('home.learnSentences')}</h3>
                         <h3 className="mb-2 font-bold text-[#3e3f3d] text-2xl">{t('home.shadowReading')}</h3>
-                        <p className="text-[#49494b] text-xl">{t('home.bunnHelps')}</p>
+                        <p className="mt-4 text-[#49494b] text-xl">{t('home.bunnHelps')}</p>
                     </div>
                     
                     <div className="relative w-[1080px]">
@@ -183,26 +183,37 @@ export default function LandingPage() {
                             height={700}
                             className="rounded-[16px] w-full h-auto"
                         />
-                        <div className="absolute inset-0 flex justify-center items-center">
-                            <div className="w-[560px] text-left">
-                                <DemoCard hideCreateTime={true} />
+                        <div className="top-[50%] absolute inset-0 flex justify-center items-center translate-y-[-50%]">
+                            <div className="w-[720px] text-left">
+                                <DemoCard hideCreateTime={true} height={480} />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* 新设计部分 */}
-                {/* <div className="relative mx-auto mt-24 max-w-6xl text-center">
-                    <h2 className="mb-4 font-bold text-[48px] leading-[1.2] tracking-tight">
-                        每个人都在说学习句子不要学习单词
-                    </h2>
-                    <p className="mx-auto mb-10 max-w-2xl text-[#49494b] text-xl">
-                        Bunn真的做了一个这样的功能
-                    </p>
-                    
-                    <div className="bg-white shadow-lg p-8 border border-[#1d283a] rounded-[16px] min-h-[400px]">
+                <div className="flex flex-col items-center mt-24">
+                    {/* 标题文字 */}
+                    <div className="mb-8 text-center">
+                        <h3 className="mb-2 font-bold text-[#3e3f3d] text-2xl">{t('home.contextTitle')}</h3>
+                        <p className="mt-4 text-[#49494b] text-xl">{t('home.pluginHelp')}</p>
                     </div>
-                </div> */}
+                    
+                    <div className="relative w-[1080px]">
+                        <Image
+                            src="/assets/slogans/hero-bg-2.png"
+                            alt="context background"
+                            width={1080}
+                            height={700}
+                            className="rounded-[16px] w-full h-auto"
+                        />
+                        <div className="absolute inset-0 flex justify-center items-center">
+                            <div className="w-[720px] text-left">
+                                {/* 这里可以放置Demo组件或其他内容 */}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

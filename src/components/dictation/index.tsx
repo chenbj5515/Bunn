@@ -3,6 +3,7 @@ import React from "react";
 import diff_match_patch from "diff-match-patch";
 import { updateReviewTimes } from "./server-functions";
 import { usePathname } from "next/navigation";
+import { useTranslations } from 'next-intl';
 
 interface IProps {
     originalText: string;
@@ -14,6 +15,7 @@ interface IProps {
 export function Dictation(props: IProps) {
     const { originalText, cardID, onBlurChange, weakBorder = false } = props;
     const pathname = usePathname();
+    const t = useTranslations('dictation');
 
     const dictationRef = React.useRef<HTMLDivElement>(null);
     // 入力内容
@@ -107,7 +109,7 @@ export function Dictation(props: IProps) {
                     ></path>
                 </svg>
                 <div className="top-[50%] left-7 absolute text-[#999] text-[16px] sm:text-[14px] whitespace-nowrap -translate-y-1/2">
-                    日本語原文を書いてください
+                    {t('writeOriginalText')}
                 </div>
             </div>
             <div

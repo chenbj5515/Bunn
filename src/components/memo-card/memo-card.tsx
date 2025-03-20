@@ -15,13 +15,30 @@ import { cardIdAtom } from "@/lib/atom";
 import { useSetAtom } from "jotai";
 import { memoCard } from "@/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
+import { useTranslations } from 'next-intl';
 
 export function MemoCard(props: InferSelectModel<typeof memoCard> & {
     onDelete?: (id: string) => void;
     weakBorder?: boolean;
     hideCreateTime?: boolean;
+    width?: string | number;
+    height?: string | number;
 }) {
-    const { translation, kanaPronunciation, originalText, createTime, id, contextUrl, onDelete, weakBorder = false, hideCreateTime = false } = props;
+    const {
+        translation,
+        kanaPronunciation,
+        originalText,
+        createTime,
+        id,
+        contextUrl,
+        onDelete,
+        weakBorder = false,
+        hideCreateTime = false,
+        width,
+        height
+    } = props;
+
+    const t = useTranslations('memoCard');
 
     const [recorderPressed, setRecorderPressedState] = React.useState(false);
     const [recordPlayBtnPressed, setRecordPlayBtnPressed] = React.useState(false);
@@ -111,7 +128,11 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
     return (
         <Card
             ref={cardRef}
-            className={`relative p-5 border ${weakBorder ? 'border-gray-200' : 'border-black'} text-left leading-[1.9] tracking-[1.5px]`}
+            className={`text-[17px] relative p-5 border ${weakBorder ? 'border-gray-200' : 'border-black'} text-left leading-[1.9] tracking-[1.5px]`}
+            style={{
+                width: width ? (typeof width === 'number' ? `${width}px` : width) : 'auto',
+                height: height ? (typeof height === 'number' ? `${height}px` : height) : 'auto'
+            }}
         >
             {!hideCreateTime && (
                 <div className={`-top-[30px] left-1 absolute ${weakBorder ? 'text-white' : 'text-[#999]'} text-[16px] sm:text-[14px]`}>
@@ -207,81 +228,91 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
                     </svg>
                 </div>
             )}
-            <div className="flex mb-[28px]">
-                <div
-                    suppressContentEditableWarning
-                    contentEditable
-                    className="relative outline-none w-[calc(100%-42px)]"
-                    onBlur={handleOriginalTextBlur}
-                    ref={originalTextRef}
-                >
-                    原文：
-                    {isFocused ? (
-                        <section
-                            className={`rounded-lg absolute ${isFocused ? "backdrop-blur-[3px] backdrop-saturate-[180%]" : ""
-                                }  w-[101%] h-[105%] -left-[4px] -top-[2px]`}
-                        ></section>
-                    ) : null}
-                    <span className="original-text">{originalText}</span>
+            <div className="flex flex-col justify-between h-full">
+                <div>
+                    <div
+                        suppressContentEditableWarning
+                        contentEditable
+                        className="relative outline-none w-[calc(100%-42px)]"
+                        onBlur={handleOriginalTextBlur}
+                        ref={originalTextRef}
+                    >
+                        {t('originalText')}：
+                        {isFocused ? (
+                            <section
+                                className={`rounded-lg absolute ${isFocused ? "backdrop-blur-[3px] backdrop-saturate-[180%]" : ""
+                                    }  w-[101%] h-[105%] -left-[4px] -top-[2px]`}
+                            ></section>
+                        ) : null}
+                        <span className="original-text">{originalText}</span>
+                    </div>
                 </div>
-            </div>
-            翻訳：
-            <div
-                suppressContentEditableWarning
-                contentEditable
-                ref={translationTextRef}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                className="pr-[42px] outline-none font-Default leading-[3] whitespace-pre-wrap"
-            >
-                {translation}
-            </div>
-            読み：
-            <div
-                suppressContentEditableWarning
-                contentEditable
-                ref={kanaTextRef}
-                onFocus={hanldeKanaFocus}
-                onBlur={handleKanaBlur}
-                className="pr-[42px] outline-none leading-[3] whitespace-pre-wrap"
-            >
-                {kanaPronunciation}
-            </div>
-            <div className="relative flex justify-center mt-3 cursor-pointer">
-                {/* 录音ボタン */}
-                <div className="group inline-block relative mr-[30px] w-[40px] h-[40px]">
-                    <i className="top-[50%] left-[50%] z-[10] absolute -translate-x-1/2 -translate-y-1/2 ri-mic-fill"></i>
-                    <input
-                        checked={recorderPressed}
-                        onChange={handleRecordBtnClick}
-                        type="checkbox"
-                        className="peer top-0 left-0 z-[11] absolute opacity-0 w-full h-full cursor-pointer double-click"
-                    />
-                    <span className={`block top-1/2 left-1/2 absolute bg-white dark:bg-bgDark dark:shadow-none group-active:shadow-custom peer-active:dark:shadow-darkActive peer-checked:dark:shadow-darkActive peer-checked:shadow-buttonActive group-active:filter-blurHalf peer-active:dark:filter-blurHalf peer-checked:filter-blurHalf border ${weakBorder ? 'border-gray-200' : 'border-[#1d283a]'} rounded-[68.8px] w-[50px] h-[50px] transition-all -translate-x-1/2 -translate-y-1/2 duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]`}></span>
+
+                <div>
+                    {t('translation')}：
+                    <span
+                        suppressContentEditableWarning
+                        contentEditable
+                        ref={translationTextRef}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        className="pr-[42px] outline-none font-Default whitespace-pre-wrap"
+                    >
+                        {translation}
+                    </span>
                 </div>
-                {/* 录音プレーボタン */}
-                <div className="group inline-block relative w-[40px] h-[40px]">
-                    <i className="top-[50%] left-[50%] z-[10] absolute text-[22px] -translate-x-1/2 -translate-y-1/2 ri-play-circle-fill"></i>
-                    <input
-                        checked={recordPlayBtnPressed}
-                        onChange={handleRecordPlayBtnClick}
-                        type="checkbox"
-                        className="peer top-0 left-0 z-[11] absolute opacity-0 w-full h-full cursor-pointer"
-                    />
-                    <span className={`block top-1/2 left-1/2 absolute bg-white dark:bg-bgDark dark:shadow-none group-active:shadow-buttonActive peer-active:dark:shadow-darkActive group-active:filter-blurHalf border ${weakBorder ? 'border-gray-200' : 'border-[#1d283a]'} rounded-[68.8px] w-[50px] h-[50px] transition-all -translate-x-1/2 -translate-y-1/2 duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]`}></span>
+
+                <div>
+                    {t('pronunciation')}：
+                    <span
+                        suppressContentEditableWarning
+                        contentEditable
+                        ref={kanaTextRef}
+                        onFocus={hanldeKanaFocus}
+                        onBlur={handleKanaBlur}
+                        className="pr-[42px] outline-none whitespace-pre-wrap"
+                    >
+                        {kanaPronunciation}
+                    </span>
                 </div>
-            </div>
-            <div className="relative flex flex-col mt-2">
-                {
-                    originalText ? (
-                        <Dictation
-                            originalText={originalText}
-                            cardID={id}
-                            onBlurChange={handleBlurChange}
-                            weakBorder={weakBorder}
+
+                <div className="flex justify-center">
+                    {/* 录音ボタン */}
+                    <div className="group inline-block relative mr-[30px] w-[40px] h-[40px]">
+                        <i className="top-[50%] left-[50%] z-[10] absolute -translate-x-1/2 -translate-y-1/2 ri-mic-fill"></i>
+                        <input
+                            checked={recorderPressed}
+                            onChange={handleRecordBtnClick}
+                            type="checkbox"
+                            className="peer top-0 left-0 z-[11] absolute opacity-0 w-full h-full cursor-pointer double-click"
                         />
-                    ) : null
-                }
+                        <span className={`block top-1/2 left-1/2 absolute bg-white dark:bg-bgDark dark:shadow-none group-active:shadow-custom peer-active:dark:shadow-darkActive peer-checked:dark:shadow-darkActive peer-checked:shadow-buttonActive group-active:filter-blurHalf peer-active:dark:filter-blurHalf peer-checked:filter-blurHalf border ${weakBorder ? 'border-gray-200' : 'border-[#1d283a]'} rounded-[68.8px] w-[50px] h-[50px] transition-all -translate-x-1/2 -translate-y-1/2 duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]`}></span>
+                    </div>
+                    {/* 录音プレーボタン */}
+                    <div className="group inline-block relative w-[40px] h-[40px]">
+                        <i className="top-[50%] left-[50%] z-[10] absolute text-[22px] -translate-x-1/2 -translate-y-1/2 ri-play-circle-fill"></i>
+                        <input
+                            checked={recordPlayBtnPressed}
+                            onChange={handleRecordPlayBtnClick}
+                            type="checkbox"
+                            className="peer top-0 left-0 z-[11] absolute opacity-0 w-full h-full cursor-pointer"
+                        />
+                        <span className={`block top-1/2 left-1/2 absolute bg-white dark:bg-bgDark dark:shadow-none group-active:shadow-buttonActive peer-active:dark:shadow-darkActive group-active:filter-blurHalf border ${weakBorder ? 'border-gray-200' : 'border-[#1d283a]'} rounded-[68.8px] w-[50px] h-[50px] transition-all -translate-x-1/2 -translate-y-1/2 duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]`}></span>
+                    </div>
+                </div>
+
+                <div className="mb-0">
+                    {
+                        originalText ? (
+                            <Dictation
+                                originalText={originalText}
+                                cardID={id}
+                                onBlurChange={handleBlurChange}
+                                weakBorder={weakBorder}
+                            />
+                        ) : null
+                    }
+                </div>
             </div>
         </Card>
     );

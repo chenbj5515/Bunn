@@ -25,6 +25,8 @@
         "learnSentences": "每個人都在說，不要學習單字，學習句子。",
         "shadowReading": "每個人都在說，要影子跟讀。",
         "bunnHelps": "Bunn的記憶卡片都可以幫你做到。",
+        "contextTitle": "不只是句子，Bunn支持完整的上下文。",
+        "pluginHelp": "Bunn插件會幫助你帶上下文拷貝。",
         "cards": {
             "memoCard": {
                 "title": "記憶卡片",
@@ -432,5 +434,13 @@
                 "translation": "既然來到這一步，我也無法退縮了。"
             }
         }
+    },
+    "memoCard": {
+        "originalText": "原文",
+        "translation": "翻譯",
+        "pronunciation": "讀音"
+    },
+    "dictation": {
+        "writeOriginalText": "請默寫出原文"
     }
 }

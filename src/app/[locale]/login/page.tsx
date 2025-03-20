@@ -8,6 +8,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 // import LoadingButton from "@/components/ui/loading-button"
 import { signIn } from "@/lib/auth-client"
+import LoadingButton from "@/components/ui/loading-button"
 
 export default function LoginPage() {
     const t = useTranslations('login');
@@ -60,11 +61,11 @@ export default function LoginPage() {
                     <CardContent>
                         <div className="gap-6 grid mt-[26px]">
                             <div className="flex flex-col gap-4">
-                                <Button
-                                    variant="outline"
-                                    className="w-full"
+                                <LoadingButton
+                                    variant="default"
+                                    className="opacity-95 w-full"
                                     onClick={onGitHubSignIn}
-                                    // isLoading={isGithubLoading}
+                                    isLoading={isGithubLoading}
                                     disabled={isGithubLoading || isGoogleLoading}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="mr-2 w-4 h-4">
@@ -74,12 +75,12 @@ export default function LoginPage() {
                                         />
                                     </svg>
                                     {t('loginWithGithub')}
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className="w-full"
+                                </LoadingButton>
+                                <LoadingButton
+                                    variant="default"
+                                    className="opacity-95 w-full"
                                     onClick={onGoogleSignIn}
-                                    // isLoading={isGoogleLoading}
+                                    isLoading={isGoogleLoading}
                                     disabled={isGithubLoading || isGoogleLoading}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="mr-2 w-4 h-4">
@@ -89,7 +90,7 @@ export default function LoginPage() {
                                         />
                                     </svg>
                                     {t('loginWithGoogle')}
-                                </Button>
+                                </LoadingButton>
                             </div>
                         </div>
                     </CardContent>

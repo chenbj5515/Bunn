@@ -138,7 +138,7 @@ export default function LandingPage() {
             {/* Hero Section */}
             <div className="relative mx-auto px-4 pt-16 pb-24 max-w-7xl text-center">
                 {/* Hero content */}
-                <h1 className="mb-6 font-bold text-6xl leading-[1.2] tracking-tight">
+                <h1 className={`${locale === 'zh' ? 'mb-8' : 'mb-6'} font-bold text-[68px] leading-[1.2] tracking-tight`}>
                     {locale === 'en' ? (
                         <>
                             Your Personal Japanese
@@ -149,7 +149,7 @@ export default function LandingPage() {
                         t('home.personalJourney')
                     )}
                 </h1>
-                <p className="mx-auto mb-8 max-w-2xl text-gray-600 text-xl">
+                <p className="mx-auto mb-8 max-w-2xl text-[#49494b] text-xl">
                     {t('home.stopScattering')}
                     <br />
                     {t('home.bunnWillHeloYou')}

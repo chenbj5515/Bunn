@@ -3,9 +3,9 @@
     "language": "Language",
     "login": "Login", 
     "signup": "Sign Up",
-    "guide": "Guide",
-    "pricing": "Pricing",
-    "contact": "Contact",
+    "guide": "GUIDE",
+    "pricing": "PRICING",
+    "contact": "CONTACT US",
     "footer": {
       "copyright": "Bunn © 2025",
       "termsOfService": "Terms of Service",
@@ -175,7 +175,7 @@
       "currentPlan": "Current Plan"
     },
     "proPlan": {
-      "title": "Pro Plan", 
+      "title": "Premium Plan", 
       "description": "Unlimited access and premium features",
       "price": "¥35 / month",
       "features": {

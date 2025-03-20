@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Pacifico } from 'next/font/google';
 import { Metadata } from 'next';
+import BackgroundWrapper from "./background-wrapper";
 
 export const metadata: Metadata = {
   title: 'Bunn',
@@ -36,15 +37,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html className="bg-[#f5f5f5]">
       <head>
         {/* <link rel="manifest" href="/manifest.json" /> */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}>
         {/* <SpeedInsights /> */}
-        <main className="flex flex-col dark:bg-bgDark relative">
-          {children}
-        </main>
+        <BackgroundWrapper>
+          <main className="relative flex flex-col">
+            {children}
+          </main>
+        </BackgroundWrapper>
       </body>
     </html>
   );

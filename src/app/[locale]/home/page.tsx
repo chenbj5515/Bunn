@@ -103,7 +103,7 @@ export default function LandingPage() {
     };
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="min-h-screen">
             {/* 添加毛玻璃弹窗 */}
             {showDemo ? (
                 <div className="top-[0] left-[0] z-[10] fixed flex justify-center items-center backdrop-blur-[3px] backdrop-saturate-[180%] w-[100vw] h-[100vh]">

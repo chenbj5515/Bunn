@@ -51,7 +51,7 @@ export default async function MemoCardsPage() {
 
   return (
     <>
-      <div className="pb-[36px]">
+      <div className="pt-[42px] pb-[36px]">
         <MemoCardList
           newCardsPromise={newCardsPromise}
           forgottenCardsPromise={forgottenCardsPromise}

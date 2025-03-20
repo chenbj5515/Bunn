@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect } from "react";
-import { Card } from "@/components/ui/card";
+// import { div } from "@/components/ui/card";
 import { DemoCard } from "@/components/memo-card/demo-card";
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
@@ -34,7 +34,7 @@ const App: React.FC = () => {
                 </div>
 
                 {/* Preface Section */}
-                <Card className="bg-white shadow-none border-none">
+                <div className="shadow-none border-none">
                     <h2 className="m-12 font-semibold text-2xl text-center">
                         {t('preface.title')}
                     </h2>
@@ -59,9 +59,9 @@ const App: React.FC = () => {
                             {t('preface.creation')}
                         </p>
                     </div>
-                </Card>
+                </div>
                 {/* Core Concept Section */}
-                <Card className="bg-white shadow-none border-none">
+                <div className="shadow-none border-none">
                     <h2 className="m-12 font-semibold text-2xl text-center">
                         {t('core.title')}
                     </h2>
@@ -127,10 +127,10 @@ const App: React.FC = () => {
                             <DemoCard />
                         </div>
                     </div>
-                </Card>
+                </div>
 
                 {/* Review Section */}
-                <Card className="bg-white shadow-none border-none">
+                <div className="shadow-none border-none">
                     <h2 className="m-12 font-semibold text-2xl text-center">
                         {t('review.title')}
                     </h2>
@@ -148,10 +148,10 @@ const App: React.FC = () => {
                             {t('review.interaction')}
                         </p>
                     </div>
-                </Card>
+                </div>
 
                 {/* Context Section */}
-                <Card className="bg-white shadow-none border-none">
+                <div className="shadow-none border-none">
                     <h2 className="m-12 font-semibold text-2xl text-center">
                         {t('context.title')}
                     </h2>
@@ -166,10 +166,10 @@ const App: React.FC = () => {
                             {t('context.feature')}
                         </p>
                     </div>
-                </Card>
+                </div>
 
                 {/* Getting Started Section */}
-                <Card className="bg-white shadow-none border-none">
+                <div className="shadow-none border-none">
                     <h2 className="m-12 font-semibold text-2xl text-center">
                         {t('getStarted.title')}
                     </h2>
@@ -315,10 +315,10 @@ const App: React.FC = () => {
                             <DemoCard type="contextText" />
                         </div>
                     </div>
-                </Card>
+                </div>
 
                 {/* What If I Can't Remember Section */}
-                {/* <Card className="bg-white shadow-none mb-8 border-none">
+                {/* <div className="shadow-none mb-8 border-none">
                     <h2 className="mb-12 font-semibold text-2xl text-center">
                         {t('remember.title')}
                     </h2>
@@ -341,10 +341,10 @@ const App: React.FC = () => {
                             {t('remember.conclusion')}
                         </p>
                     </div>
-                </Card> */}
+                </div> */}
 
                 {/* Summary Section */}
-                <Card className="bg-white shadow-none border-none">
+                <div className="shadow-none border-none">
                     <h2 className="m-12 font-semibold text-2xl text-center">
                         {t('why.title')}
                     </h2>
@@ -385,7 +385,7 @@ const App: React.FC = () => {
                             )
                         })}
                     </div>
-                </Card>
+                </div>
             </div>
         </div>
     );

@@ -20,10 +20,10 @@ export default async function SubscriptionPage() {
     const t = await getTranslations('pricing');    
 
     return (
-        <div className="mx-auto container">
-            <div className="flex justify-center mt-2 h-[100px]">
+        <div className="mx-auto pt-[104px] container">
+            {/* <div className="flex justify-center mt-2 h-[100px]">
                 <h1 className="font-bold text-3xl">{t('title')}</h1>
-            </div>
+            </div> */}
             <div className="gap-20 grid md:grid-cols-2 mx-auto max-w-[700px]">
                 <Card className="hover:border-primary w-[324px] h-[400px] transition-all duration-300">
                     <CardHeader>

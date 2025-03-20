@@ -43,9 +43,10 @@ export default async function middleware(req: NextRequest) {
   const session = await getSession();
   const locale = getAndSetLocale(req);
   const pathname = req.nextUrl.pathname;
+  console.log(pathname, locale, 'pathname');
 
   // 处理根路由重定向
-  if (pathname === '/') {
+  if (pathname === `/${locale}`) {
     // 从Cookie中获取会话信息
     if (!session) {
       return NextResponse.redirect(new URL(`/${locale}/home`, req.url));

@@ -58,6 +58,7 @@ export function DemoCard({ type = 'youtubeSubtitle' }: DemoCardProps) {
         <MemoCard
             {...demoDataMap[type]}
             onDelete={() => { }}
+            weakBorder
         />
     );
 }

@@ -1,7 +1,7 @@
 {
   "common": {
     "language": "Language",
-    "login": "Login", 
+    "login": "Login",
     "signup": "Sign Up",
     "guide": "GUIDE",
     "pricing": "PRICING",
@@ -9,7 +9,7 @@
     "footer": {
       "copyright": "Bunn © 2025",
       "termsOfService": "Terms of Service",
-      "privacyPolicy": "Privacy Policy", 
+      "privacyPolicy": "Privacy Policy",
       "businessDisclosure": "Specified Commercial Transaction Act"
     }
   },
@@ -18,8 +18,8 @@
     "subtitle": "Master Japanese through personalized AI conversations",
     "startLearning": "Start Learning",
     "features": "Features",
-    "personalJourney": "Your Personal Japanese Learning Journey",
-    "stopScattering": "Stop learning Japanese in a scattered way. Learn sentence by sentence with shadow reading, review, and one-click context recovery. Learn Japanese elegantly with Bunn.",
+    "personalJourney": "A sentence-focused approach to language learning",
+    "stopScattering": "Language learning requires consistent dedication - make every step elegant and solid.",
     "bunnWillHeloYou": " ",
     "getStartedFree": "Get Started Free",
     "cards": {
@@ -28,7 +28,7 @@
         "description": "Translation, pronunciation, shadow reading and dictation - all in one card."
       },
       "wordCard": {
-        "title": "Word Cards", 
+        "title": "Word Cards",
         "description": "Remember which sentence a word appeared in, just click to check if you forget."
       },
       "exam": {
@@ -130,7 +130,7 @@
       "key": "The key is to be selective: only input sentences you find interesting or important. If you truly find certain content interesting or important, you'll naturally be more willing to spend time on:",
       "methods": [
         "Shadow reading",
-        "Dictation practice", 
+        "Dictation practice",
         "Recalling sentences from keywords",
         "Taking tests",
         "Reviewing daily learning reports"
@@ -175,7 +175,7 @@
       "currentPlan": "Current Plan"
     },
     "proPlan": {
-      "title": "Premium Plan", 
+      "title": "Premium Plan",
       "description": "Unlimited access and premium features",
       "price": "¥35 / month",
       "features": {
@@ -275,7 +275,7 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "subtitle": "Bunn Privacy Policy", 
+    "subtitle": "Bunn Privacy Policy",
     "lastUpdated": "Last Updated",
     "welcome": "Welcome, and thank you for your interest in Bunn. This Privacy Policy outlines how we collect, use, and protect your information when you use our services.",
     "sections": {
@@ -406,7 +406,7 @@
     },
     "completedLearning": "Today's Progress",
     "sentences": "Sentences",
-    "words": "Words", 
+    "words": "Words",
     "test": "Test",
     "noRecord": "No learning records today. Want to review some recently learned sentences?",
     "startReview": "Start Review",

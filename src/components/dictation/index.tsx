@@ -8,10 +8,11 @@ interface IProps {
     originalText: string;
     onBlurChange?: (state: string) => void;
     cardID: string;
+    weakBorder?: boolean;
 }
 
 export function Dictation(props: IProps) {
-    const { originalText, cardID, onBlurChange } = props;
+    const { originalText, cardID, onBlurChange, weakBorder = false } = props;
     const pathname = usePathname();
 
     const dictationRef = React.useRef<HTMLDivElement>(null);
@@ -112,7 +113,7 @@ export function Dictation(props: IProps) {
             <div
                 suppressContentEditableWarning
                 ref={dictationRef}
-                className={`border-[#1d283a] dark:border-[#4e4f51] rounded-[15px] p-2 bg-white border focus:outline focus:outline-[1px] focus:outline-[#a9a9a9] ${answerFinished ? "text-[#999]" : ""} dark:bg-bgDark dark:shadow-none w-full mt-4 text-[15px] min-h-[40px]`}
+                className={`${weakBorder ? 'border-gray-200' : 'border-[#1d283a]'} dark:border-[#4e4f51] rounded-[15px] p-2 bg-white border focus:outline focus:outline-[1px] focus:outline-[#a9a9a9] ${answerFinished ? "text-[#999]" : ""} dark:bg-bgDark dark:shadow-none w-full mt-4 text-[15px] min-h-[40px]`}
                 contentEditable
                 onInput={handleDictationChange}
                 onFocus={handleFocus}

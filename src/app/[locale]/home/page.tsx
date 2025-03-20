@@ -141,18 +141,24 @@ export default function LandingPage() {
                 <h1 className={`${locale === 'zh' ? 'mb-8' : 'mb-6'} font-bold text-[68px] leading-[1.2] tracking-tight`}>
                     {locale === 'en' ? (
                         <>
-                            Your Personal Japanese
+                            A sentence-focused
                             <br />
-                            Learning Journey
+                            approach to language learning
                         </>
                     ) : (
                         t('home.personalJourney')
                     )}
                 </h1>
                 <p className="mx-auto mb-8 max-w-2xl text-[#49494b] text-xl">
-                    {t('home.stopScattering')}
-                    <br />
-                    {t('home.bunnWillHeloYou')}
+                    {locale === 'en' ? (
+                        <>
+                            Language learning requires consistent dedication
+                            <br />
+                            make every step elegant and solid
+                        </>
+                    ) : (
+                        t('home.stopScattering')
+                    )}
                 </p>
                 <Button
                     className="bg-[#18181B] hover:bg-[#27272A] px-8 py-6 text-white text-lg"
@@ -160,123 +166,35 @@ export default function LandingPage() {
                 >
                     {t('home.getStartedFree')}
                 </Button>
-
-                {/* Feature Cards */}
-                <div className="relative mx-auto mt-16 max-w-6xl h-[420px] font-NewYork">
-                    <div className="group left-1/2 absolute flex -space-x-4 rotate-[-5deg] -translate-x-1/2 transform">
-                        {/* 第一张卡片：Memo Card */}
-                        <div
-                            className="hover:z-10 bg-white shadow-lg hover:shadow-xl rounded-2xl w-[300px] h-[400px] hover:rotate-0 hover:scale-110 transition-all hover:-translate-y-4 group-hover:translate-x-[0px] duration-500 ease-out transform"
-                            style={{
-                                transform: 'rotate(0deg)',
-                                transformOrigin: 'center center'
-                            }}
-                        >
-                            <div className="p-6 border border-[#1d283a] rounded-[12px] h-[100%]">
-                                <h3 className="font-medium text-lg">{t('home.cards.memoCard.title')}</h3>
-                                <div
-                                    className="flex justify-center mt-8 max-h-[236px] cursor-pointer"
-                                    onClick={() => handleCardClick('memo')}
-                                >
-                                    <Image
-                                        src="/assets/slogans/memo_card.png"
-                                        alt="Memo Card"
-                                        width={260}
-                                        height={260}
-                                        className="object-contain hover:scale-105 transition-transform duration-500"
-                                    />
-                                </div>
-                                <p className="mt-10 text-[#49494b] text-sm leading-snug">
-                                    {t('home.cards.memoCard.description')}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* 第二张卡片：Word Card */}
-                        <div
-                            className="hover:z-10 bg-white shadow-lg hover:shadow-xl rounded-2xl w-[300px] h-[400px] hover:rotate-0 hover:scale-110 transition-all hover:-translate-y-4 group-hover:translate-x-[40px] duration-500 ease-out transform"
-                            style={{
-                                transform: 'rotate(5deg)',
-                                transformOrigin: 'center center'
-                            }}
-                        >
-                            <div className="p-6 border border-[#1d283a] rounded-[12px] h-[100%]">
-                                <h3 className="font-medium text-lg">{t('home.cards.wordCard.title')}</h3>
-                                <div
-                                    className="flex justify-center mt-8 max-h-[236px] cursor-pointer"
-                                    onClick={() => handleCardClick('word')}
-                                >
-                                    <Image
-                                        src="/assets/slogans/word_card.png"
-                                        alt="Word Card"
-                                        width={260}
-                                        height={260}
-                                        className="object-contain hover:scale-105 transition-transform duration-500"
-                                    />
-                                </div>
-                                <p className="mt-10 text-[#49494b] text-sm leading-snug">
-                                    {t('home.cards.wordCard.description')}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* 第三张卡片：Exam */}
-                        {/* <div
-                            className="hover:z-10 bg-white shadow-lg hover:shadow-xl rounded-2xl w-[300px] h-[400px] hover:rotate-0 hover:scale-110 transition-all hover:-translate-y-4 group-hover:translate-x-[80px] duration-500 ease-out transform"
-                            style={{
-                                transform: 'rotate(10deg)',
-                                transformOrigin: 'center center'
-                            }}
-                        >
-                            <div className="p-6 border border-[#1d283a] rounded-[12px] h-[100%]">
-                                <h3 className="font-medium text-lg">{t('home.cards.exam.title')}</h3>
-                                <div
-                                    className="flex justify-center mt-4 max-h-[236px] cursor-pointer"
-                                    onClick={() => handleCardClick('exam')}
-                                >
-                                    <Image
-                                        src="/assets/slogans/exam.png"
-                                        alt="Exam"
-                                        width={260}
-                                        height={260}
-                                        className="object-contain hover:scale-105 transition-transform duration-500"
-                                    />
-                                </div>
-                                <p className="mt-4 text-[#49494b] text-sm leading-snug">
-                                    {t('home.cards.exam.description')}
-                                </p>
-                            </div>
-                        </div> */}
-
-                        {/* 第四张卡片：Daily Report */}
-                        <div
-                            className="hover:z-10 bg-white shadow-lg hover:shadow-xl rounded-2xl w-[300px] h-[400px] hover:rotate-0 hover:scale-110 transition-all hover:-translate-y-4 group-hover:translate-x-[120px] duration-500 ease-out transform"
-                            style={{
-                                transform: 'rotate(15deg)',
-                                transformOrigin: 'center center'
-                            }}
-                        >
-                            <div className="p-6 border border-[#1d283a] rounded-[12px] h-[100%]">
-                                <h3 className="font-medium text-lg">{t('home.cards.dailyReport.title')}</h3>
-                                <div
-                                    className="flex justify-center mt-8 max-h-[236px] cursor-pointer"
-                                    onClick={() => handleCardClick('daily')}
-                                >
-                                    <Image
-                                        src="/assets/slogans/daily_report.png"
-                                        alt="Daily Report"
-                                        width={260}
-                                        height={260}
-                                        className="object-contain hover:scale-105 transition-transform duration-500"
-                                    />
-                                </div>
-                                <p className="mt-4 text-[#49494b] text-sm leading-snug">
-                                    {t('home.cards.dailyReport.description')}
-                                </p>
+                <div className="flex justify-center mt-16">
+                    <div className="relative w-[1080px]">
+                        <Image
+                            src="/assets/slogans/hero-bg-1.png"
+                            alt="背景"
+                            width={1080}
+                            height={700}
+                            className="rounded-[16px] w-full h-auto"
+                        />
+                        <div className="absolute inset-0 flex justify-center items-center">
+                            <div className="w-[560px] text-left">
+                                <DemoCard />
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/* 新设计部分 */}
+                {/* <div className="relative mx-auto mt-24 max-w-6xl text-center">
+                    <h2 className="mb-4 font-bold text-[48px] leading-[1.2] tracking-tight">
+                        每个人都在说学习句子不要学习单词
+                    </h2>
+                    <p className="mx-auto mb-10 max-w-2xl text-[#49494b] text-xl">
+                        Bunn真的做了一个这样的功能
+                    </p>
+                    
+                    <div className="bg-white shadow-lg p-8 border border-[#1d283a] rounded-[16px] min-h-[400px]">
+                    </div>
+                </div> */}
             </div>
         </div>
     )

@@ -21,6 +21,9 @@
         "personalJourney": "以句子为核心的语言学习应用",
         "stopScattering": "学习语言需要日积月累，确保每一步都优雅而坚实。",
         "getStartedFree": "免费开始使用",
+        "learnSentences": "每个人都在说，不要学习单词，学习句子。",
+        "shadowReading": "每个人都在说，要影子跟读。",
+        "bunnHelps": "Bunn的记忆卡片都可以帮你做到。",
         "cards": {
             "memoCard": {
                 "title": "记忆卡片",

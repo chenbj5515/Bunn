@@ -166,18 +166,26 @@ export default function LandingPage() {
                 >
                     {t('home.getStartedFree')}
                 </Button>
-                <div className="flex justify-center mt-16">
+                
+                <div className="flex flex-col items-center mt-16">
+                    {/* 移出来的三行文字 */}
+                    <div className="mb-8 text-center">
+                        <h3 className="mb-2 font-bold text-[#3e3f3d] text-2xl">{t('home.learnSentences')}</h3>
+                        <h3 className="mb-2 font-bold text-[#3e3f3d] text-2xl">{t('home.shadowReading')}</h3>
+                        <p className="text-[#49494b] text-xl">{t('home.bunnHelps')}</p>
+                    </div>
+                    
                     <div className="relative w-[1080px]">
                         <Image
                             src="/assets/slogans/hero-bg-1.png"
-                            alt="背景"
+                            alt="background"
                             width={1080}
                             height={700}
                             className="rounded-[16px] w-full h-auto"
                         />
                         <div className="absolute inset-0 flex justify-center items-center">
                             <div className="w-[560px] text-left">
-                                <DemoCard />
+                                <DemoCard hideCreateTime={true} />
                             </div>
                         </div>
                     </div>

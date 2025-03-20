@@ -19,8 +19,9 @@ import type { InferSelectModel } from "drizzle-orm";
 export function MemoCard(props: InferSelectModel<typeof memoCard> & {
     onDelete?: (id: string) => void;
     weakBorder?: boolean;
+    hideCreateTime?: boolean;
 }) {
-    const { translation, kanaPronunciation, originalText, createTime, id, contextUrl, onDelete, weakBorder = false } = props;
+    const { translation, kanaPronunciation, originalText, createTime, id, contextUrl, onDelete, weakBorder = false, hideCreateTime = false } = props;
 
     const [recorderPressed, setRecorderPressedState] = React.useState(false);
     const [recordPlayBtnPressed, setRecordPlayBtnPressed] = React.useState(false);
@@ -112,9 +113,11 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
             ref={cardRef}
             className={`relative p-5 border ${weakBorder ? 'border-gray-200' : 'border-black'} text-left leading-[1.9] tracking-[1.5px]`}
         >
-            <div className={`-top-[30px] left-1 absolute ${weakBorder ? 'text-white' : 'text-[#999]'} text-[16px] sm:text-[14px]`}>
-                {createTime ? getTimeAgo(createTime.toString()) : ""}
-            </div>
+            {!hideCreateTime && (
+                <div className={`-top-[30px] left-1 absolute ${weakBorder ? 'text-white' : 'text-[#999]'} text-[16px] sm:text-[14px]`}>
+                    {createTime ? getTimeAgo(createTime.toString()) : ""}
+                </div>
+            )}
             {/* 朗読ボタン */}
             {contextUrl ? (
                 <>

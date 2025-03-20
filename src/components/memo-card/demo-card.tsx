@@ -5,10 +5,11 @@ import { useTranslations } from "next-intl";
 import { useAudioPermission } from "@/hooks/audio";
 
 type DemoCardProps = {
-    type?: 'youtubeSubtitle' | 'netflixSubtitle' | 'contextText'
+    type?: 'youtubeSubtitle' | 'netflixSubtitle' | 'contextText';
+    hideCreateTime?: boolean;
 }
 
-export function DemoCard({ type = 'youtubeSubtitle' }: DemoCardProps) {
+export function DemoCard({ type = 'youtubeSubtitle', hideCreateTime = false }: DemoCardProps) {
     const t = useTranslations('memoCards')
     useAudioPermission();
 
@@ -59,6 +60,7 @@ export function DemoCard({ type = 'youtubeSubtitle' }: DemoCardProps) {
             {...demoDataMap[type]}
             onDelete={() => { }}
             weakBorder
+            hideCreateTime={hideCreateTime}
         />
     );
 }

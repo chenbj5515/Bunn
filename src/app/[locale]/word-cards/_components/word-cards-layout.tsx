@@ -54,8 +54,6 @@ export function WordCards(props: IProps) {
     const reviewCards = use(reviewCardsPromise);
     const wordCards = [...newCards, ...reviewCards];
 
-    console.log(wordCards, "wordCards")
-
     const [rows, setRows] = React.useState<TWordCard[][]>([]);
     const [cardInfo, setCardInfo] = React.useState<InferSelectModel<typeof memoCard> | null>(null);
     const [showGlass, setShowGlass] = React.useState(false);
@@ -65,7 +63,6 @@ export function WordCards(props: IProps) {
     const ref = React.useRef<HTMLDivElement>(null);
 
     const updateLayout = React.useCallback(() => {
-        console.log(ref.current, "updateLayout======")
         if (ref.current) {
             const containerWidth = ref.current.clientWidth;
             const cardWidth = cardWidthRef.current;
@@ -140,8 +137,6 @@ export function WordCards(props: IProps) {
         setCardInfo(item.memo_card);
         updateForgetCount(item);
     }
-
-    console.log(rows, "rows")
 
     return (
         <Suspense fallback={<Loading />}>

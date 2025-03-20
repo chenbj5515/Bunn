@@ -96,7 +96,6 @@ export function useAIStream(
           url.searchParams.append(key, value);
         });
 
-        console.log("fetch");
         const response = await fetch(url, {
           signal: abortController.signal
         });
@@ -152,7 +151,6 @@ export function useAIStream(
         }
       } catch (err) {
         if (err instanceof Error && err.name === 'AbortError') {
-          console.log('请求被取消');
           return;
         }
         const errorObj = err instanceof Error ? err : new Error(String(err));
@@ -164,10 +162,8 @@ export function useAIStream(
     }
 
     fetchStream();
-    // console.log("fecth");
 
     return () => {
-      console.log("cleanup");
       abortController.abort();
       cleanup?.();
     };

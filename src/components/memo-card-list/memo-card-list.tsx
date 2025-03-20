@@ -31,8 +31,6 @@ export function MemoCardList(props: IProps) {
         window.location.reload();
     }
 
-    console.log(memoCards, "memoCards===")
-
     async function handleImportSampleData() {
         try {
             setIsLoading(true);

@@ -14,13 +14,15 @@ export default function LoginPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get('callbackUrl') || '/';
+    const redirectUrl = searchParams.get('redirect');
+    const finalCallbackUrl = redirectUrl ? `${callbackUrl}?redirect=${redirectUrl}` : callbackUrl;
     const [isGithubLoading, setIsGithubLoading] = useState(false);
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
     async function onGitHubSignIn() {
         try {
             setIsGithubLoading(true);
-            await signIn("github");
+            await signIn("github", { callbackUrl: finalCallbackUrl });
         } catch (error) {
             console.error("GitHub 登录错误：", error);
             setIsGithubLoading(false);
@@ -30,7 +32,7 @@ export default function LoginPage() {
     async function onGoogleSignIn() {
         try {
             setIsGoogleLoading(true);
-            await signIn("google");
+            await signIn("google", { callbackUrl: finalCallbackUrl });
         } catch (error) {
             console.error("Google 登录错误：", error);
             setIsGoogleLoading(false);

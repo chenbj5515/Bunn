@@ -3,8 +3,6 @@ import { routing } from './i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from './lib/auth';
 
-export default createMiddleware(routing);
-
 const locales = ['en', 'zh', 'zh-TW'];
 
 // 获取并设置用户语言偏好
@@ -33,15 +31,15 @@ function getAndSetLocale(request: NextRequest): string {
   return finalLocale;
 }
 
-
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
+  matcher: ['/((?!api|trpc|_next|_vercel|.*\\..*).*)']
 };
 
-export async function middleware(req: NextRequest) {
+// 创建一个处理国际化的中间件
+const intlMiddleware = createMiddleware(routing);
+
+// 导出主中间件函数
+export default async function middleware(req: NextRequest) {
   const session = await getSession();
   const locale = getAndSetLocale(req);
   const pathname = req.nextUrl.pathname;
@@ -61,6 +59,6 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}/memo-cards`, req.url));
   }
 
-  console.log(session, 'session');
-  console.log('middleware');
+  // 对于非根路由，使用next-intl的中间件处理国际化
+  return intlMiddleware(req);
 }

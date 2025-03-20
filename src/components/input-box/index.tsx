@@ -69,7 +69,6 @@ export function InputBox() {
     const handlePaste = (event: React.ClipboardEvent<HTMLDivElement>) => {
         event.preventDefault();
         const plainText = event.clipboardData.getData("text/plain");
-        console.log(plainText);
         let parsedData;
         try {
             parsedData = JSON.parse(plainText);

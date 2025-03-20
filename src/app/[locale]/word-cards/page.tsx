@@ -40,8 +40,6 @@ export default async function WordCardsApp() {
             eq(wordCard.reviewTimes, 0)
         ));
 
-    console.log(newCardsCount, "newCardsCount")
-
     const newCardsPromise = db.select()
         .from(wordCard)
         .where(and(

@@ -17,15 +17,11 @@ export async function POST(req: NextRequest) {
         body = await req.json();
       } else {
         const text = await req.text();
-        console.log('请求体文本:', text.substring(0, 200)); // 只打印前200个字符
         body = JSON.parse(text);
       }
     } catch (e: unknown) {
-      console.log('解析请求体错误:', e instanceof Error ? e.message : '未知错误');
       return NextResponse.json({ success: false, error: '无法解析请求体' }, { status: 400 });
     }
-
-    console.log('body getted===', body);
 
     const { prompt, model = 'gpt-4' } = body;
 

@@ -3,13 +3,12 @@ import { useRouter, usePathname } from 'next/navigation';
 import "remixicon/fonts/remixicon.css";
 import { LanguageSelector } from "@/components/language-selector"
 import { useLocale, useTranslations } from "next-intl"
-import Link from "next/link"
+import { Link } from '@/i18n/navigation';
 import { useState } from "react"
 import UserPanel from "@/components/user-panel"
 import { useAudioPermission } from "@/hooks/audio"
 
 export function UnloginHeader() {
-    const router = useRouter()
     const t = useTranslations();
 
     return (
@@ -19,18 +18,18 @@ export function UnloginHeader() {
             </div>
             <div className="flex items-center gap-8 pr-14 font-medium">
                 <LanguageSelector />
-                <button
-                    onClick={() => router.push('/guide')}
+                <Link
+                    href={`/guide`}
                     className="text-black hover:text-[#595a5d] transition-colors"
                 >
                     {t('common.guide')}
-                </button>
-                <button
-                    onClick={() => router.push('/pricing')}
+                </Link>
+                <Link
+                    href={'/pricing'}
                     className="text-black hover:text-[#595a5d] transition-colors"
                 >
                     {t('common.pricing')}
-                </button>
+                </Link>
                 <button
                     onClick={() => window.location.href = 'mailto:chenbj55150220@gmail.com'}
                     className="text-black hover:text-[#595a5d] transition-colors"
@@ -64,16 +63,16 @@ export function LoginedHeader() {
             <nav className="w-[620px]">
                 <ul className="flex justify-between items-center">
                     <li>
-                        <Link prefetch href={`/${locale}/memo-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/memo-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('memoCards')}</Link>
+                        <Link href={`/memo-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/memo-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('memoCards')}</Link>
                     </li>
                     <li>
-                        <Link href={`/${locale}/word-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/word-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('wordCards')}</Link>
+                        <Link href={`/word-cards`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/word-cards` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('wordCards')}</Link>
                     </li>
                     {/* <li className="hidden sm:block">
             <Link prefetch href={`/${locale}/exam-preparation`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname === `/${locale}/exam-preparation` ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('exam')}</Link>
           </li> */}
                     <li className="hidden sm:block">
-                        <Link prefetch href={`/${locale}/daily-report`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname.startsWith(`/${locale}/daily-report`) ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('dailyReport')}</Link>
+                        <Link prefetch href={`/daily-report`} className={`text-[15px] font-medium px-4 py-2 rounded-full ${pathname.startsWith(`/${locale}/daily-report`) ? 'text-[#a9aaab]' : 'hover:text-[#a9aaab]'}`}>{t('dailyReport')}</Link>
                     </li>
                 </ul>
             </nav>

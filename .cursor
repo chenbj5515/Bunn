@@ -18,5 +18,17 @@
     "type": "next-intl",
     "mode": "with-i18n-routing",
     "docs": "https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing"
+  },
+  "package_manager": "pnpm",
+  "ui_library": {
+    "name": "shadcn",
+    "package": "shadcn"
+  },
+  "context_resolution": {
+    "priority_paths": ["docs"],
+    "behavior": "read_docs_first"
+  },
+  "next_config": {
+    "path": "next.config.ts"
   }
 } 

@@ -2,7 +2,11 @@
 
 ## 概述
 
-本项目使用Better Auth 实现认证系统，目前只支持Github和Google登录，原理是jwt+session。
+本项目使用Better Auth 实现认证系统，目前只支持Github和Google登录。系统采用jwt+session的混合认证方案，其中：
+
+- JWT采用引用模式设计，只存储用户ID和会话ID，不存储具体的用户信息
+- Session存储在数据库中，包含用户的详细信息和会话状态
+- 这种设计既保证了认证的高效性，又提供了完整的会话管理能力
 
 ## 认证原理
 
@@ -45,23 +49,27 @@ Better Auth 采用 JWT + Session 的混合认证方案，结合了两者的优�
 
 ### 关键技术点
 
-1. **JWT 结构**：
+1. **JWT 结构（采用引用模式）**：
    ```typescript
    {
-     // Header
+     // Header（标准JWT头部）
      alg: "HS256",
      typ: "JWT",
      
-     // Payload
-     sub: "用户ID",
-     sessionId: "会话ID",
-     iat: 发布时间,
-     exp: 过期时间,
+     // Payload（仅存储标识信息）
+     sub: "用户ID",        // 用户唯一标识
+     sessionId: "会话ID",  // 关联的session记录
+     iat: 发布时间,       // token发布时间
+     exp: 过期时间,       // token过期时间
      
      // Signature
      // 使用 JWT_SECRET 签名
    }
    ```
+   
+   > 注意：JWT采用引用模式设计，只存储用户ID和会话ID这两个必要的标识信息。
+   > 用户的其他信息（如用户名、权限等）都存储在数据库的session表中，
+   > 这样既保证了token的轻量，又提供了更好的安全性和可控性。
 
 2. **Session 存储**：
    - 存储位置：PostgreSQL 数据库

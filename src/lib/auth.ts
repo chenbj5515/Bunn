@@ -50,9 +50,12 @@ export const auth = betterAuth({
 
     // 跨域支持
     cors: {
-        origin: true,
+        origin: ['chrome-extension://lmepenbgdgfihjehjnanphnfhobclghl'],
         credentials: true,
     },
+
+    // 添加 trustedOrigins 配置
+    trustedOrigins: ['chrome-extension://lmepenbgdgfihjehjnanphnfhobclghl'],
 });
 
 // API包装函数

@@ -44,31 +44,31 @@ export default function UserPanel() {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <Avatar className="hidden sm:block h-10 w-10 cursor-pointer">
+                <Avatar className="hidden sm:block w-10 h-10 cursor-pointer">
                     <AvatarImage src={data?.user?.image?.toString()} alt="profile" />
                     <AvatarFallback>user</AvatarFallback>
                 </Avatar>
             </PopoverTrigger>
-            <PopoverContent className="w-72 p-2 space-y-1">
-                <div className="h-10 px-2 flex items-center">
-                    <p className="text-sm font-medium truncate">{data?.user?.email}</p>
+            <PopoverContent className="space-y-1 p-2 w-72">
+                <div className="flex items-center px-2 h-10">
+                    <p className="font-medium text-sm truncate">{data?.user?.email}</p>
                 </div>
-                <div className="h-10 flex items-center">
+                <div className="flex items-center h-10">
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="p-[8px] h-full w-full justify-between text-sm border-none outline-none"
+                        className="justify-between !shadow-none focus-visible:shadow-none p-[8px] !border-0 focus-visible:border-0 focus:border-0 border-none rounded-none outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-full h-full text-sm"
                         onClick={() => window.open(`/${locale}/pricing`, '_blank')}
                     >
-                        <p className="text-sm font-medium">{t('membershipPlan')}</p>
+                        <p className="font-medium text-sm">{t('membershipPlan')}</p>
                         <span className="text-sm">
                             {expiryTime ? 'Premium' : 'Free'}
                         </span>
                     </Button>
                 </div>
                 {expiryTime && (
-                    <div className="h-10 px-2 flex items-center justify-between">
-                        <p className="text-sm font-medium">{t('expiryDate')}</p>
+                    <div className="flex justify-between items-center px-2 h-10">
+                        <p className="font-medium text-sm">{t('expiryDate')}</p>
                         <span className="text-sm">{expiryTime.toLocaleDateString('ja-JP', { year: 'numeric', month: 'numeric', day: 'numeric' })}</span>
                     </div>
                 )}
@@ -76,18 +76,18 @@ export default function UserPanel() {
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="h-10 p-[8px] w-full justify-between text-sm border-none outline-none"
+                        className="justify-between !shadow-none focus-visible:shadow-none p-[8px] !border-0 focus-visible:border-0 focus:border-0 border-none rounded-none outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-full h-10 text-sm"
                         onClick={handleManageSubscription}
                     >
                         {t('subscriptionManagement')}
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="w-4 h-4" />
                     </Button>
                 )}
                 <Separator className="!mt-[8px] !mb-[8px]" />
                 <Button
                     variant="ghost"
                     size="sm"
-                    className="h-10 p-[8px] w-full justify-start text-sm"
+                    className="justify-start !shadow-none focus-visible:shadow-none p-[8px] !border-0 focus-visible:border-0 focus:border-0 rounded-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-full h-10 text-sm"
                     onClick={handleLogout}
                 >
                     {t('logout')}

@@ -7,12 +7,12 @@ import { updateReviewTimes } from "../_server-functions";
 import { TWordCard } from "../page";
 import Loading from "@/components/ui/loading";
 import { updateForgetCount } from "@/components/word-card/server-functions";
-import { actionTypeEnum, relatedTypeEnum } from "@/db/schema";
 import { WordCardsGuide } from "./word-cards-guide";
 // import { insertActionLogs } from "@/components/exam/server-actions/insert-action-logs";
 import type { InferSelectModel } from "drizzle-orm";
 import type { memoCard } from "@/db/schema";
 import { WordCardAdder } from "@/components/word-adder";
+import useRemoveHtmlBg from "@/hooks/use-remove-html-bg";
 
 interface IProps {
     newCardsPromise: Promise<TWordCard[]>;
@@ -61,6 +61,7 @@ export function WordCards(props: IProps) {
     const cardWidthRef = React.useRef(280); // 卡片宽度
     const gapWidthRef = React.useRef(20);   // 最小间距
     const ref = React.useRef<HTMLDivElement>(null);
+    useRemoveHtmlBg();
 
     const updateLayout = React.useCallback(() => {
         if (ref.current) {

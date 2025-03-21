@@ -131,7 +131,8 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
             className={`text-[17px] relative p-5 border ${weakBorder ? 'border-gray-200' : 'border-black'} text-left leading-[1.9] tracking-[1.5px]`}
             style={{
                 width: width ? (typeof width === 'number' ? `${width}px` : width) : 'auto',
-                height: height ? (typeof height === 'number' ? `${height}px` : height) : 'auto'
+                height: height ? (typeof height === 'number' ? `${height}px` : height) : 'auto',
+                minHeight: '420px'
             }}
         >
             {!hideCreateTime && (
@@ -228,7 +229,7 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
                     </svg>
                 </div>
             )}
-            <div className="flex flex-col justify-between h-full">
+            <div className="flex flex-col justify-between h-full card-content" style={{ minHeight: '420px' }}>
                 <div>
                     <div
                         suppressContentEditableWarning

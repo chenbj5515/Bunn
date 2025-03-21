@@ -2,9 +2,7 @@
 import { speakText } from "@/utils";
 import { TWordCard } from "@/app/[locale]/word-cards/page";
 // import { useTripleRightClick } from "@/hooks";
-import {
-    Card,
-} from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
 interface IProps {
@@ -15,7 +13,6 @@ interface IProps {
 
 export function WordCard(props: IProps) {
     const { wordCardInfo, wordCardInfo: { id, word, meaning }, onRecognize, onUnRecognize } = props;
-
     // const cardRef = useTripleRightClick(async () => {})
 
     function handlePlayBtn(text: string) {

@@ -19,10 +19,10 @@
         "startLearning": "开始学习",
         "features": "特色功能",
         "personalJourney": "以句子为核心的语言学习应用",
-        "stopScattering": "学习语言需要日积月累，确保每一步都优雅而坚实。",
+        "stopScattering": "学习语言是漫长的旅程，让Bunn帮你优雅地前行。",
         "getStartedFree": "免费开始使用",
         "learnSentences": "每个人都在说，不要学习单词，学习句子。",
-        "shadowReading": "每个人都在说，要影子跟读。",
+        "shadowReading": "每个人都在说影子跟读。",
         "bunnHelps": "Bunn的记忆卡片都可以帮你做到。",
         "contextTitle": "不只是句子，Bunn支持完整的上下文。",
         "pluginHelp": "Bunn插件会帮助你带上下文拷贝。",
@@ -365,6 +365,7 @@
         "demoTranslation1": "问这个就太无聊了。",
         "demoTranslation2": "你是说要我因为私人情感扭曲事实吗？",
         "demoTranslation3": "福冈美女众多的传闻已经不再是传说，可以说是定论了。",
+        "demoTranslation4": "Cursor的Project Rules运用的最佳实践",
         "whereToGetSentence": "哪里可以获取日语句子？"
     },
     "wordCards": {

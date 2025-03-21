@@ -23,7 +23,7 @@
     "bunnWillHeloYou": " ",
     "getStartedFree": "Get Started Free",
     "learnSentences": "Everyone says, don't learn words, learn sentences.",
-    "shadowReading": "Everyone says, shadow reading is essential.",
+    "shadowReading": "Everyone is talking about shadow reading.",
     "bunnHelps": "Bunn's memory cards can help you achieve all of this.",
     "contextTitle": "Not just sentences, Bunn supports full context.",
     "pluginHelp": "Bunn plugin helps you copy with context.",
@@ -366,6 +366,7 @@
     "demoTranslation1": "It's too boring to ask that.",
     "demoTranslation2": "Are you saying I should distort facts based on personal feelings?",
     "demoTranslation3": "The rumor about Fukuoka having many beautiful women is no longer just a legend - it's now considered a fact.",
+    "demoTranslation4": "The best practices for using Project and Rules in Cursor",
     "whereToGetSentence": "Where can I get Japanese sentences?"
   },
   "wordCards": {

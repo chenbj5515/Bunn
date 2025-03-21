@@ -19,11 +19,11 @@
         "startLearning": "開始學習",
         "features": "特色功能",
         "personalJourney": "以句子為核心的語言學習應用",
-        "stopScattering": "學習語言需要日積月累，確保每一步都優雅而紮實。",
+        "stopScattering": "學習語言是漫長的旅程，讓Bunn幫你優雅地前進。",
         "bunnWillHeloYou": " ",
         "getStartedFree": "免費開始使用",
         "learnSentences": "每個人都在說，不要學習單字，學習句子。",
-        "shadowReading": "每個人都在說，要影子跟讀。",
+        "shadowReading": "每個人都在說影子跟讀。",
         "bunnHelps": "Bunn的記憶卡片都可以幫你做到。",
         "contextTitle": "不只是句子，Bunn支持完整的上下文。",
         "pluginHelp": "Bunn插件會幫助你帶上下文拷貝。",
@@ -366,6 +366,7 @@
         "demoTranslation1": "問這個就太無聊了。",
         "demoTranslation2": "你是說要我因為私人情感扭曲事實嗎？",
         "demoTranslation3": "福岡美女眾多的傳聞已經不再是傳說，可以說是定論了。",
+        "demoTranslation4": "Cursor的Project Rules運用的最佳做法",
         "whereToGetSentence": "哪裡可以取得日語句子？"
     },
     "wordCards": {

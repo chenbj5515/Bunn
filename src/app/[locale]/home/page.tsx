@@ -152,9 +152,9 @@ export default function LandingPage() {
                 <p className="mx-auto mb-[58px] max-w-2xl text-[#49494b] text-xl">
                     {locale === 'en' ? (
                         <>
-                            Language learning requires consistent dedication
+                            Language learning is a long journey
                             <br />
-                            make every step elegant and solid
+                            Let Bunn help you move forward with elegance
                         </>
                     ) : (
                         t('home.stopScattering')
@@ -185,7 +185,7 @@ export default function LandingPage() {
                         />
                         <div className="top-[50%] absolute inset-0 flex justify-center items-center translate-y-[-50%]">
                             <div className="w-[720px] text-left">
-                                <DemoCard hideCreateTime={true} height={480} />
+                                <DemoCard type="normalText" hideCreateTime={true} height={480} />
                             </div>
                         </div>
                     </div>

@@ -151,8 +151,8 @@ export const userActionLogs = pgTable("user_action_logs", {
 	id: uuid().defaultRandom().primaryKey().notNull(),
 	userId: text("user_id").notNull(),
 	actionType: actionTypeEnum("action_type").notNull(),
-	relatedId: uuid("related_id").notNull(),
-	relatedType: relatedTypeEnum("related_type").notNull(),
+	relatedId: uuid("related_id"),
+	relatedType: relatedTypeEnum("related_type"),
 	createTime: timestamp("create_time", { precision: 6, withTimezone: true, mode: 'string' }).default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
 

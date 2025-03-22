@@ -58,7 +58,7 @@ export function useAIStream(
   options: UseStreamFetchOptions = {}
 ): StreamFetchResult {
   const { 
-    model = 'gpt-4',
+    model = 'gpt-4o',
     endpoint = '/api/openai/stream',
     onFinish, 
     onError, 

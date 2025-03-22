@@ -1,1 +1,0 @@
-ALTER TABLE "exam_results" ALTER COLUMN "reference_answer" DROP DEFAULT;

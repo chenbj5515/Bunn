@@ -31,7 +31,6 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
         createTime,
         id,
         contextUrl,
-        onDelete,
         weakBorder = false,
         hideCreateTime = false,
         width,
@@ -56,10 +55,7 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
 
     const { startRecording, stopRecording, playRecording } = useAudioRecorder();
 
-    const cardRef = useTripleRightClick(async () => {
-        onDelete?.(id);
-        await deleteMemoCard(id);
-    })
+    const cardRef = React.useRef<HTMLDivElement>(null);
 
     function handleBlurChange(type: string) {
         setIsFocused(type === "blur" ? false : true);
@@ -128,9 +124,9 @@ export function MemoCard(props: InferSelectModel<typeof memoCard> & {
     return (
         <Card
             ref={cardRef}
-            className={`text-[17px] relative p-5 border ${weakBorder ? 'border-gray-200' : 'border-black'} text-left leading-[1.9] tracking-[1.5px]`}
+            className={`w-[90%] m-auto text-[17px] relative p-5 border ${weakBorder ? 'border-gray-200' : 'border-black'} text-left leading-[1.9] tracking-[1.5px]`}
             style={{
-                width: width ? (typeof width === 'number' ? `${width}px` : width) : 'auto',
+                // width: width ? (typeof width === 'number' ? `${width}px` : width) : 'auto',
                 height: height ? (typeof height === 'number' ? `${height}px` : height) : 'auto',
                 minHeight: '420px'
             }}

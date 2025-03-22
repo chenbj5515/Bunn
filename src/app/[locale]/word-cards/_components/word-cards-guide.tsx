@@ -36,8 +36,8 @@ export function WordCardsGuide(props: IProps) {
         return (
             <div className="flex flex-col justify-center items-center min-h-[60vh]">
                 <div className="w-full text-center">
-                    <h2 className="mb-4 font-bold text-2xl">{t('noWordCards')}</h2>
-                    <p className="mb-6 text-gray-600 dark:text-gray-400">{t('importSampleFirst')}</p>
+                    <h2 className="mb-4 font-bold text-[2.2rem]">{t('noWordCards')}</h2>
+                    <p className="mb-6 text-[17px] text-gray-600 dark:text-gray-400">{t('importSampleFirst')}</p>
                     <div className="flex justify-center">
                         <LoadingButton
                             onClick={handleImportSampleData}

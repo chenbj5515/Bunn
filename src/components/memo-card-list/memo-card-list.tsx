@@ -11,26 +11,40 @@ import { localCardListAtom } from "@/lib/atom";
 import { memoCard } from "@/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
 import useRemoveHtmlBg from "@/hooks/use-remove-html-bg";
+import { Trash } from "lucide-react";
+import { deleteMemoCard } from "../memo-card/server-functions";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 interface IProps {
     newCardsPromise: Promise<InferSelectModel<typeof memoCard>[]>
     forgottenCardsPromise: Promise<InferSelectModel<typeof memoCard>[]>
 }
 
-export function MemoCardList(props: IProps) {
+// 实际卡片列表内容组件
+function MemoCardContent(props: IProps) {
     const { newCardsPromise, forgottenCardsPromise } = props;
     const [isLoading, setIsLoading] = React.useState(false);
     const localCards = useAtomValue(localCardListAtom)
     const t = useTranslations('memoCards');
     useRemoveHtmlBg();
 
+    // 直接使用use钩子，不包装在try/catch中
     const newCards = use(newCardsPromise) || [];
     const forgottenCards = use(forgottenCardsPromise) || [];
 
-    const memoCards = Array.isArray(newCards) && Array.isArray(forgottenCards) ? [...newCards, ...forgottenCards] : [];
+    const initialMemoCards = [...newCards, ...forgottenCards];
 
-    function handleDelete(id: string) {
-        window.location.reload();
+    const [displayCards, setDisplayCards] = React.useState(initialMemoCards);
+
+    async function handleDelete(id: string) {
+        setDisplayCards(prev => prev.filter(card => card.id !== id));
+        
+        try {
+            await deleteMemoCard(id);
+        } catch (error) {
+            console.error('删除失败:', error);
+            // setDisplayCards(initialMemoCards);
+        }
     }
 
     async function handleImportSampleData() {
@@ -44,14 +58,20 @@ export function MemoCardList(props: IProps) {
     }
 
     return (
-        <Suspense fallback={<Loading />}>
-            {memoCards?.map(card => (
-                <div className="mx-auto mb-14 max-w-92-675 text-[18px] sm:text-base memo-card" key={card.id}>
-                    <MemoCard {...card} onDelete={handleDelete} />
+        <>
+            {displayCards?.map(card => (
+                <div className="group relative mx-auto mb-14 max-w-[760px] text-[18px] sm:text-base memo-card" key={card.id}>
+                    <button 
+                        className="top-0 right-0 z-10 absolute bg-red-500 hover:bg-red-600 opacity-0 group-hover:opacity-100 p-1 rounded-full transition-opacity duration-200"
+                        onClick={() => handleDelete(card.id)}
+                    >
+                        <Trash className="w-5 h-5" />
+                    </button>
+                    <MemoCard {...card} />
                 </div>
             ))}
             {
-                localCards.length === 0 && memoCards.length === 0 ? (
+                localCards.length === 0 && displayCards.length === 0 ? (
                     <div className="flex justify-center items-center bg-gradient-to-b from-blue-50 dark:from-blue-900 to-white dark:to-blue-800 mt-[80px]">
                         <div className="mx-auto px-4 lg:px-8 sm:py-24 lg:py-32 text-center">
                             <h1 className="font-bold text-black sm:text-[2.2rem] dark:text-white text-3xl tracking-tight">
@@ -70,6 +90,22 @@ export function MemoCardList(props: IProps) {
                     </div>
                 ) : null
             }
-        </Suspense>
-    )
+        </>
+    );
+}
+
+// 主导出组件，包含错误边界
+export function MemoCardList(props: IProps) {
+    return (
+        <ErrorBoundary
+            onReset={() => {
+                // 当用户点击重试按钮时执行的操作
+                window.location.reload();
+            }}
+        >
+            <Suspense fallback={<Loading />}>
+                <MemoCardContent {...props} />
+            </Suspense>
+        </ErrorBoundary>
+    );
 }

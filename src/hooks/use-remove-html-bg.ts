@@ -20,34 +20,15 @@ export function useRemoveHtmlBg(shouldRestore: boolean = true): void {
     // 移除背景色类名
     if (htmlHasBgClass) {
       htmlElement.classList.remove(bgClassName);
-      console.log(htmlElement, '移除HTML背景色类名', bgClassName);
     }
     
     if (bodyHasBgClass) {
       bodyElement.classList.remove(bgClassName);
-      console.log(bodyElement, '移除body背景色类名', bgClassName);
     }
 
     if (mainHasBgClass && mainElement) {
       mainElement.classList.remove(bgClassName);
-      console.log(mainElement, '移除main背景色类名', bgClassName);
     }
-    
-    // 清理函数：在组件卸载时执行
-    return () => {
-      // 如果需要恢复，且之前有背景色类名，则恢复原始背景色类名
-      if (shouldRestore) {
-        if (htmlHasBgClass) {
-          htmlElement.classList.add(bgClassName);
-        }
-        if (bodyHasBgClass) {
-          bodyElement.classList.add(bgClassName);
-        }
-        if (mainHasBgClass && mainElement) {
-          mainElement.classList.add(bgClassName);
-        }
-      }
-    };
   }, []); // 空依赖数组表示仅在组件挂载和卸载时执行
 }
 

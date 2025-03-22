@@ -44,7 +44,7 @@ export default function UserPanel() {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <Avatar className="hidden sm:block w-10 h-10 cursor-pointer">
+                <Avatar className="hidden sm:block bg-[#eaeceb] w-10 h-10 cursor-pointer">
                     <AvatarImage src={data?.user?.image?.toString()} alt="profile" />
                     <AvatarFallback>user</AvatarFallback>
                 </Avatar>

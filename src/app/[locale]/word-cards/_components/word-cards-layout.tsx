@@ -13,6 +13,7 @@ import type { InferSelectModel } from "drizzle-orm";
 import type { memoCard } from "@/db/schema";
 import { WordCardAdder } from "@/components/word-adder";
 import useRemoveHtmlBg from "@/hooks/use-remove-html-bg";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 interface IProps {
     newCardsPromise: Promise<TWordCard[]>;
@@ -46,7 +47,7 @@ function splitIntoRows<T>(wordList: T[], n: number) {
     return rows;
 }
 
-export function WordCards(props: IProps) {
+function WordCardsContent(props: IProps) {
     const { newCardsPromise, reviewCardsPromise, memoCardCount, firstMemoCard } = props;
     const router = useRouter();
 
@@ -140,7 +141,7 @@ export function WordCards(props: IProps) {
     }
 
     return (
-        <Suspense fallback={<Loading />}>
+        <>
             {showGlass && cardInfo ? (
                 <div className="top-[0] left-[0] z-[10000] fixed backdrop-blur-[3px] backdrop-saturate-[180%] w-[100vw] h-[100vh] overflow-scroll">
                     <div ref={containerRef} className="top-[50%] left-[50%] absolute p-[22px] w-full sm:w-[auto] sm:min-w-[46vw] max-h-[92%] overflow-auto -translate-x-1/2 -translate-y-1/2 transform">
@@ -207,6 +208,21 @@ export function WordCards(props: IProps) {
                     })
                 )}
             </div>
-        </Suspense>
+        </>
     )
+}
+
+export function WordCards(props: IProps) {
+    return (
+        <ErrorBoundary
+            onReset={() => {
+                // 当用户点击重试按钮时执行的操作
+                window.location.reload();
+            }}
+        >
+            <Suspense fallback={<Loading />}>
+                <WordCardsContent {...props} />
+            </Suspense>
+        </ErrorBoundary>
+    );
 }

@@ -4,11 +4,6 @@ import { WordCards } from "./_components/word-cards-layout";
 import { getSession } from "@/lib/auth";
 import { eq, gt, desc, and, sql } from "drizzle-orm";
 
-type WordCardWithMemo = {
-    word_card: typeof wordCard.$inferSelect;
-    memo_card: typeof memoCard.$inferSelect | null;
-};
-
 export type TWordCard = typeof wordCard.$inferSelect & {
     memo_card: typeof memoCard.$inferSelect
 };
@@ -20,15 +15,17 @@ export default async function WordCardsApp() {
         return new Error("Unauthorized")
     }
 
-    // 获取 memo card 表的数据量
+    // 获取当前用户的 memo card 表的数据量
     const memoCardCount = await db.select({ count: sql<number>`cast(count(*) as integer)` })
         .from(memoCard)
+        .where(eq(memoCard.userId, session.user.id))
         .then(result => result[0].count);
 
-    // 如果有数据，获取第一条记录
+    // 如果有数据，获取当前用户的第一条记录
     const firstMemoCard = memoCardCount > 0 
         ? await db.select()
             .from(memoCard)
+            .where(eq(memoCard.userId, session.user.id))
             .limit(1)
             .then(results => results[0])
         : null;

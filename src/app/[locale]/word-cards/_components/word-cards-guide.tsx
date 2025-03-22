@@ -20,6 +20,7 @@ export function WordCardsGuide(props: IProps) {
     const [isLoading, setIsLoading] = React.useState(false);
     const t = useTranslations('wordCards');
 
+    console.log(memoCardCount, "memoCardCount===");
     async function handleImportSampleData() {
         try {
             setIsLoading(true);

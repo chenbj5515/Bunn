@@ -141,7 +141,7 @@ export default function LandingPage() {
                 <h1 className={`${locale === 'zh' ? 'mb-8' : 'mb-6'} font-bold text-[68px] leading-[1.2] tracking-tight`}>
                     {locale === 'en' ? (
                         <>
-                            A sentence-focused
+                            An all-in-one
                             <br />
                             approach to language learning
                         </>
@@ -152,9 +152,9 @@ export default function LandingPage() {
                 <p className="mx-auto mb-[58px] max-w-2xl text-[#49494b] text-xl">
                     {locale === 'en' ? (
                         <>
-                            Language learning is a long journey
+                            Can't find a language learning app that's both elegant and truly useful?
                             <br />
-                            Let Bunn help you move forward with elegance
+                            Just try Bunn!
                         </>
                     ) : (
                         t('home.stopScattering')

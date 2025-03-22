@@ -367,10 +367,18 @@
         "demoTranslation2": "你是說要我因為私人情感扭曲事實嗎？",
         "demoTranslation3": "福岡美女眾多的傳聞已經不再是傳說，可以說是定論了。",
         "demoTranslation4": "Cursor的Project Rules運用的最佳做法",
+        "demoTranslation5": "還沒習慣就使用高負荷的植入了嗎？",
+        "demoTranslation6": "每次都照搬封面搭配，還真是時尚呢",
         "whereToGetSentence": "哪裡可以取得日語句子？"
     },
     "wordCards": {
-        "demoMeaning": "扭曲，曲解"
+        "demoMeaning": "扭曲，曲解",
+        "noWordCards": "還沒有單字卡",
+        "importSampleFirst": "Bunn以句子為核心，單字需要從句子中劃取，讓我們先匯入一些範例句子。",
+        "importSampleData": "匯入範例資料",
+        "clickHere": "點擊這裡",
+        "selectWordGuide": "選擇要學習的單字",
+        "selectWordGuideDesc": "選取記憶卡片原文中的任何單字或片語將其加入到你的單字卡中"
     },
     "exam": {
         "title": "考試",

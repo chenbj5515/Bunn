@@ -12,7 +12,6 @@ import { WordCardsGuide } from "./word-cards-guide";
 import type { InferSelectModel } from "drizzle-orm";
 import type { memoCard } from "@/db/schema";
 import { WordCardAdder } from "@/components/word-adder";
-import useRemoveHtmlBg from "@/hooks/use-remove-html-bg";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 interface IProps {
@@ -62,7 +61,6 @@ function WordCardsContent(props: IProps) {
     const cardWidthRef = React.useRef(280); // 卡片宽度
     const gapWidthRef = React.useRef(20);   // 最小间距
     const ref = React.useRef<HTMLDivElement>(null);
-    useRemoveHtmlBg();
 
     const updateLayout = React.useCallback(() => {
         if (ref.current) {

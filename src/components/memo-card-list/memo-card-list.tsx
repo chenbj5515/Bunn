@@ -10,7 +10,6 @@ import { useAtomValue } from "jotai";
 import { localCardListAtom } from "@/lib/atom";
 import { memoCard } from "@/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
-import useRemoveHtmlBg from "@/hooks/use-remove-html-bg";
 import { Trash } from "lucide-react";
 import { deleteMemoCard } from "../memo-card/server-functions";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
@@ -26,7 +25,6 @@ function MemoCardContent(props: IProps) {
     const [isLoading, setIsLoading] = React.useState(false);
     const localCards = useAtomValue(localCardListAtom)
     const t = useTranslations('memoCards');
-    useRemoveHtmlBg();
 
     // 直接使用use钩子，不包装在try/catch中
     const newCards = use(newCardsPromise) || [];

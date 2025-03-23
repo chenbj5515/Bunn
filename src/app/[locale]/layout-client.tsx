@@ -6,6 +6,7 @@ import { localCardListAtom } from '@/lib/atom';
 import { Provider, useSetAtom } from 'jotai';
 import { Footer } from './footer';
 import { UnloginHeader, LoginedHeader } from './header';
+import { useHtmlBg } from '@/hooks/use-html-bg';
 
 export default function LayoutClient({
     children,
@@ -14,6 +15,7 @@ export default function LayoutClient({
 }>) {
     const pathname = usePathname();
     const setLocalCardList = useSetAtom(localCardListAtom);
+    useHtmlBg();
     // const dispatch = useDispatch();
 
     const currentRoute = pathname.split('/').pop() || '';
@@ -25,10 +27,10 @@ export default function LayoutClient({
     const unloginHeader = unloginHeaderPaths.includes(currentRoute);
 
     useEffect(() => {
-      setLocalCardList([]);
-      return () => {
         setLocalCardList([]);
-      }
+        return () => {
+            setLocalCardList([]);
+        }
     }, [pathname]);
 
     return (

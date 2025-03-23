@@ -152,7 +152,7 @@ export default function LandingPage() {
                 <p className="mx-auto mb-[58px] max-w-2xl text-[#49494b] text-xl">
                     {locale === 'en' ? (
                         <>
-                            Can't find a language learning app that's both elegant and truly useful?
+                            Can&apos;t find a language learning app that&apos;s both elegant and truly useful?
                             <br />
                             Just try Bunn!
                         </>

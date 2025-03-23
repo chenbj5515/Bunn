@@ -109,7 +109,7 @@ export async function getUserTokenLimit(userId: string) {
   
   // 如果Redis中没有，可以从数据库获取，这里返回默认值
   // 实际实现中，您可能需要从用户订阅表中获取
-  return 5000; // 默认限制，可以根据实际情况调整
+  return 50000; // 默认限制，可以根据实际情况调整
 }
 
 // 获取用户的token使用统计

@@ -92,8 +92,8 @@ export async function POST(req: NextRequest) {
         }
         controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n'));
 
-        let inputTokens = countTokens(prompt, model);
-        let outputTokens = countTokens(fullResponse, model);
+        const inputTokens = countTokens(prompt, model);
+        const outputTokens = countTokens(fullResponse, model);
         console.log(`估算token使用: 输入=${inputTokens}, 输出=${outputTokens}`);
         // 使用 after 在响应完成后异步记录 token 使用情况
         after(async () => {

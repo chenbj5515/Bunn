@@ -98,10 +98,10 @@ export async function POST(req: NextRequest) {
 
     // 从AI SDK返回的响应中获取使用情况
     // 检查response对象并安全地访问属性
-    const responseBody = result.response?.body as any;
-    const usage = responseBody?.usage;
-    let inputTokens = usage.prompt_tokens || 1000;
-    let outputTokens = usage.completion_tokens || 1000;
+    const responseBody = result.response?.body as Record<string, unknown>;
+    const usage = responseBody?.usage as Record<string, number>;
+    const inputTokens = usage.prompt_tokens || 1000;
+    const outputTokens = usage.completion_tokens || 1000;
     console.log(`API返回token使用: 输入=${inputTokens}, 输出=${outputTokens}, 总计=${usage.total_tokens || 0}`);
 
     // 使用 after 在响应完成后异步记录 token 使用情况
